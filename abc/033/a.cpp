@@ -3,5 +3,6 @@ using namespace std;
 int main(){
     string n;
     cin >> n;
-    int counter=0;
+    if(n[0] == n[1] && n[1] == n[2] && n[2] == n[3]) cout << "SAME" << endl;
+    else cout << "DIFFERENT" << endl;
 }
