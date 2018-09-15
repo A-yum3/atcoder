@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 int main(){
-    int x;
+    char x;
     cin >> x;
-    cout << x - 96 << endl;
+    cout << x - 64 << endl;
 }
