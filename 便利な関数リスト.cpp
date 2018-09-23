@@ -13,3 +13,6 @@ int SumOfDigit(int n){
 
 // sortの使い方
 /* sort(配列,配列+配列の長さ,greater<int>()) で降順 */
+
+// 最大公約数を変換するgcd
+int gcd(int a, int b) { return b ? gcd(b, a%b) : a;}
