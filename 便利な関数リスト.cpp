@@ -19,3 +19,5 @@ int gcd(int a, int b) { return b ? gcd(b, a%b) : a;}
 
 // 文字列反転
 // reverse(スタート、終点)
+
+// 事故防止のためにグローバル変数で宣言すると気が楽
