@@ -6,6 +6,7 @@
     "algorithm": "cpp",
     "complex": "cpp",
     "valarray": "cpp",
-    "vector": "cpp"
+    "vector": "cpp",
+    "iosfwd": "cpp"
   }
 }
