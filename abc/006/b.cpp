@@ -1,19 +1,16 @@
-// メモ化再帰、DP学習してからやる
-
 #include <bits/stdc++.h>
 using namespace std;
-
-const int MAX_N = 1000000;
-int N[MAX_N];
-
-int solve(int n){
-    if(n == 1 || n == 2) return 0;
-    else if(n == 3) return 1;
-    else return solve(n-1) + solve(n-2) + solve(n-3);
-}
+typedef long long ll;
+const double EPS = 1e-9;
+typedef vector<int> vint;
+typedef pair<int, int> pint;
+#define rep(i, n) REP(i, 0, n)
+#define ALL(v) v.begin() , v.end()
+#define REP(i, x, n) for(int i = x; i < n; i++)
 
 int main(){
     int n; cin >> n;
-    int rel = solve(n);
-    cout << (rel % 10007) << endl;
+    ll f[10000000] ={0,0,0,1};
+    for(int i=4; i <= n; ++i) f[i] = (f[i-1]+f[i-2]+f[i-3])%10007;
+    return cout <<f[n] << endl,0;
 }

@@ -10,14 +10,11 @@ typedef pair<int, int> pint;
 
 
 int main(){
-    int x1, y1, x2, y2; cin >> x1 >> y1 >> x2 >> y2;
-    int x = x2, y = y2;
-    int dx = x2 - x1, dy = y2 - y1;
-    rep(i, 2){
-        swap(dx, dy);
-        dx = -dx;
-        x += dx;
-        y += dy;
-        cout << x << " " << y << endl;
+    int n, sum = 0, maxi = 0; cin >> n;
+    rep(i, n){
+        int p; cin >> p;
+        sum += p;
+        maxi = max(maxi, p);
     }
+    cout << sum - maxi / 2 << endl;
 }

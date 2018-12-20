@@ -10,14 +10,11 @@ typedef pair<int, int> pint;
 
 
 int main(){
-    int x1, y1, x2, y2; cin >> x1 >> y1 >> x2 >> y2;
-    int x = x2, y = y2;
-    int dx = x2 - x1, dy = y2 - y1;
-    rep(i, 2){
-        swap(dx, dy);
-        dx = -dx;
-        x += dx;
-        y += dy;
-        cout << x << " " << y << endl;
+    string s; cin >> s;
+    int mixi = 1000;
+    rep(i, s.length() - 2){
+        string temp  = s.substr(i, 3);
+        mixi = min(abs(753 - stoi(temp)), mixi);
     }
+    cout << mixi << endl;
 }
