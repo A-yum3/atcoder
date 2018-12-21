@@ -1,19 +1,28 @@
 #include <bits/stdc++.h>
 using namespace std;
+typedef long long ll;
+const double EPS = 1e-9;
+typedef vector<int> vint;
+typedef pair<int, int> pint;
+#define rep(i, n) REP(i, 0, n)
+#define ALL(v) v.begin() , v.end()
+#define REP(i, x, n) for(int i = x; i < n; i++)
+
+
 int main(){
-    int N,Y;
-    cin >> N >> Y;
-    int res10000 = -1, res5000 = -1, res1000 = -1;
-    for(int a=0; a <= N; ++a){
-        for(int b=0; b + a <= N; ++b){
-            int c = N - a - b;
-            int total = 10000*a + 5000*b + 1000*c;
-            if(total == Y){
-                res10000 = a;
-                res5000 = b;
-                res1000 = c;
+    int n, y; cin >> n >> y;
+    int rel10000 = -1, rel5000 = -1, rel1000 = -1;
+    rep(i, n + 1){ //10000
+        rep(j, n - i + 1){ //5000
+            int k = n - i - j;
+            int total = 10000*i + 5000*j + 1000*k;
+            if(total == y){
+                rel10000 = i;
+                rel5000 = j;
+                rel1000 = k;
             }
+
         }
     }
-    cout << res10000 << " " << res5000 << " " << res1000 << endl;
+    cout << rel10000 << " " << rel5000 << " " << rel1000;
 }

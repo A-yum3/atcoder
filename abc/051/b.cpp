@@ -1,17 +1,20 @@
 #include <bits/stdc++.h>
 using namespace std;
+typedef long long ll;
+const double EPS = 1e-9;
+typedef vector<int> vint;
+typedef pair<int, int> pint;
+#define rep(i, n) REP(i, 0, n)
+#define ALL(v) v.begin() , v.end()
+#define REP(i, x, n) for(int i = x; i < n; i++)
 
-int main() {
-    int k,s;
-    cin >> k >> s;
-    int counter=0;
-    for(int x=0; x <= k; x++){
-        for(int y=0; y <= k; y++){
-            int z = s - x - y;
-            if(0 <= z && z <= k){
-                counter++;
-            }
+
+int main(){
+    int k, s, cnt=0; cin >> k >> s;
+    rep(i, k+1){
+        rep(j, k+1){
+            if(s - i - j <= k && s - i - j >= 0 ) cnt++;
         }
     }
-    cout << counter << endl;
+    cout << cnt << endl;
 }
