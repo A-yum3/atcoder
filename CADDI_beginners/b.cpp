@@ -10,5 +10,10 @@ typedef pair<int, int> pint;
 
 
 int main(){
-
+  ll n, h, w, cnt=0; cin >> n >> h >> w;
+  rep(i, n){
+    ll a,b; cin >> a >> b;
+    if(h <= a && w <= b) cnt++;
+  }
+  cout << cnt << endl;
 }

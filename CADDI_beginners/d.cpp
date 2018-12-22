@@ -10,10 +10,12 @@ typedef pair<int, int> pint;
 
 
 int main(){
-  string s; cin >> s;
-  int cnt = 0;
-  rep(i, s.length()){
-    if(s[i] == '2') cnt++;
+  int n; cin >> n;
+  bool flg = false;
+  rep(i, n){
+    int a; cin >> a;
+    if(a % 2 == 1) flg = true;
   }
-  cout << cnt << endl;
+  if(flg) cout << "first" << endl;
+  else cout << "second" << endl;
 }
