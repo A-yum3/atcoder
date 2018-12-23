@@ -21,3 +21,11 @@ int gcd(int a, int b) { return b ? gcd(b, a%b) : a;}
 // reverse(スタート、終点)
 
 // 事故防止のためにグローバル変数で宣言すると気が楽
+
+// 素数を求める
+
+void sosuu(int n){
+    for(int i=2; i * i <= n; i++){
+        if(n % i == 0) cout << i << endl;
+    }
+}
