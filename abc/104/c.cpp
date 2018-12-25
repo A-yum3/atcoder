@@ -20,7 +20,7 @@ int main(){
     for(int mask = 0; mask < (1<<D); ++mask){ //bit探索
         int s = 0, num = 0, rest_max = -1;
         for(int i = 0; i < D; ++i){
-            if(mask>>i & 1){
+            if(mask>>i & 1){ // bit探索部
                 s += 100 * (i+1) * p[i] + c[i];
                 num += p[i];
                 cout << mask << " " <<  i << endl;
@@ -28,7 +28,7 @@ int main(){
                 rest_max = i;
             }
         }
-        if(s < G){
+        if(s < G){ // 必要スコアよりも完全スコアのが高かった時に比較
             int s1 = 100 * (rest_max + 1);
             int need = (G - s + s1 - 1) / s1;
             if(need >= p[rest_max]){
