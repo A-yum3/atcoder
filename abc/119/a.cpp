@@ -2,7 +2,6 @@
 using namespace std;
 typedef long long ll;
 const double EPS = 1e-9;
-const int INF = 1<<29;
 typedef vector<int> vint;
 typedef pair<int, int> pint;
 #define rep(i, n) REP(i, 0, n)
@@ -11,5 +10,13 @@ typedef pair<int, int> pint;
 
 
 int main(){
-
+    int year, month, day;
+    scanf("%d/%d/%d", &year, &month, &day);
+    if(year < 2019) cout << "Heisei" << endl;
+    else{
+        if(month <= 4) cout << "Heisei" << endl;
+        else{
+            cout << "TBD" << endl;
+        }
+    }
 }

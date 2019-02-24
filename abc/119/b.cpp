@@ -2,7 +2,6 @@
 using namespace std;
 typedef long long ll;
 const double EPS = 1e-9;
-const int INF = 1<<29;
 typedef vector<int> vint;
 typedef pair<int, int> pint;
 #define rep(i, n) REP(i, 0, n)
@@ -11,5 +10,13 @@ typedef pair<int, int> pint;
 
 
 int main(){
-
+    int n; cin >> n;
+    long double sum = 0;
+    rep(i, n){
+        long double x; cin >> x;
+        string u; cin >> u;
+        if(u == "JPY") sum += x;
+        else sum += x * 380000.0;
+    }
+    cout << sum << endl;
 }
