@@ -9,13 +9,28 @@ typedef pair<int, int> pint;
 #define REP(i, x, n) for(int i = x; i < n; i++)
 
 
+
 int main() {
-	int n, a[100001], ans = 0, x;
-	cin >> n;
-	REP(i, 1, n + 1) {
-		cin >> x;
-		if (a[x] == i) ans++;
-		a[i] = x;
+	int n, a, b; cin >> n >> a >> b;
+	string s; cin >> s;
+	int cnt = 0;
+	int cntc = 0;
+	rep(i, s.length()) {
+		if (s[i] == 'a') {
+			if (cnt <= a + b) {
+				cout << "Yes" << endl;
+				cnt++;
+				continue;
+			}
+		}
+		else if (s[i] == 'b') {
+			if (cnt <= a + b && cntc <= b) {
+				cout << "Yes" << endl;
+				cnt++;
+				cntc++;
+				continue;
+			}
+		}
+		cout << "No" << endl;
 	}
-	cout << ans << endl;
 }
