@@ -11,5 +11,5 @@ typedef pair<int, int> pint;
 
 
 int main(){
-
+    
 }

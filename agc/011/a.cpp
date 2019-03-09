@@ -14,20 +14,20 @@ int main(){
     int N, C, K; cin >> N >> C >> K;
     vint T(N);
     rep(i, N) cin >> T[i];
-    int ans = 0, i = N - 1;
-    while(i){
-        int base = T[i];
-        int ninzu = 1;
-        for(int j = i - 1; j >= 0; j--){
-            if(T[j] >= base - K && ninzu <= C){
-                ninzu++;
+    sort(ALL(T));
+    int ans = 1;
+    for(int i = 0; i < N;){
+        int human = 1;
+        for(int j = i + 1; j < N; j++){
+            if(human < C && T[j] <= T[i] + K){
+                human++;
             } else {
                 ans++;
                 break;
             }
         }
-        i -= ninzu;
+        i += human;
     }
-    cout  << ans << endl;
+    cout << ans << endl;
     return 0 ;
 }
