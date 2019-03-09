@@ -8,18 +8,15 @@ typedef pair<int, int> pint;
 #define ALL(v) v.begin() , v.end()
 #define REP(i, x, n) for(int i = x; i < n; i++)
 
-int hyou[200005];
+int gcd(int a, int b) { return b ? gcd(b, a%b) : a;}
 
 int main(){
-    int n, k; cin >> n >> k;
+    ll n, x; cin >> n >> x;
+    int ans;
     rep(i, n){
         int a; cin >> a;
-        hyou[a - 1]++;
+        a = abs(a - x);
+        ans = i ? gcd(ans, a) : a;
     }
-    int ans = 0;
-    sort(hyou, hyou + n);
-    for(int i = 0; i < n - k; i++){
-        ans += hyou[i];
-    }
-    cout << ans << endl;
+    cout << ans;
 }

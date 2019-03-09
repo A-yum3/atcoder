@@ -2,6 +2,7 @@
 using namespace std;
 typedef long long ll;
 const double EPS = 1e-9;
+const int INF = 1<<29;
 typedef vector<int> vint;
 typedef pair<int, int> pint;
 #define rep(i, n) REP(i, 0, n)
