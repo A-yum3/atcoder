@@ -11,15 +11,18 @@ typedef pair<int, int> pint;
 
 
 int main(){
-    int N, t; cin >> N;
-    vint a(100006, 0);
+    int N, M, C; cin >> N >> M >> C;
+    int B[M];
+    int A[N][M];
+    rep(i, M) cin >> B[i];
+    rep(i, N) rep(j, M) cin >> A[i][j];
+    int ans = 0;
     rep(i, N){
-        cin >> t;
-        a[t + 1]++;
-        a[t]++;
-        a[t + 2]++;
+        int sum = 0;
+        rep(j, M){
+            sum += A[i][j] * B[j];
+        }
+        if(sum + C > 0) ans++;
     }
-    sort(ALL(a));
-    cout << a.back() << endl;
-    return 0;
+    cout << ans << endl;
 }

@@ -9,17 +9,15 @@ typedef pair<int, int> pint;
 #define ALL(v) v.begin() , v.end()
 #define REP(i, x, n) for(int i = x; i < n; i++)
 
+ll XOR(ll n){
+    if(n % 4 == 0) return n;
+    if(n % 4 == 1) return 1;
+    if(n % 4 == 2) return n + 1;
+    else return 0;
+}
 
 int main(){
-    int N, t; cin >> N;
-    vint a(100006, 0);
-    rep(i, N){
-        cin >> t;
-        a[t + 1]++;
-        a[t]++;
-        a[t + 2]++;
-    }
-    sort(ALL(a));
-    cout << a.back() << endl;
-    return 0;
+    ll A, B; cin >> A >> B;
+    ll ans = XOR(A - 1) ^ XOR(B);
+    cout << ans << endl;
 }
