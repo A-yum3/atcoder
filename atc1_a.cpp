@@ -3,37 +3,49 @@ using namespace std;
 typedef long long ll;
 const double EPS = 1e-9;
 typedef vector<int> vint;
+typedef vector<vector<int>> vvint;
+typedef vector<vector<ll>> vll;
 typedef pair<int, int> pint;
+typedef pair<ll, ll> pll;
+#define VV(T) vector<vector< T > >
+#define brep(i, n) BREP(i, 0, m);
+#define BREP(i, x, n) for(int i = x; i < (1<<n); i++)
 #define rep(i, n) REP(i, 0, n)
-#define ALL(v) v.begin() , v.end()
+#define ALL(v) (v).begin() , (v).end()
+#define RALL(v) (v).rbegin(), (v).rend()
 #define REP(i, x, n) for(int i = x; i < n; i++)
+#define PB push_back
+#define MOD 1000000009LL
 
-int h, w;
-char s[501][501];
+char c[501][501];
 int dx[4] = {1, 0, -1, 0};
 int dy[4] = {0, 1, 0, -1};
-bool f=0;
+int H, W, f = 0;
 
 void dfs(int x, int y){
+	if(c[x][y] == '#') return;
+	if(c[x][y] == 'g') f = 1;
 
-  if(s[x][y]=='#') return;
-  if(s[x][y]=='g') f=1;
-  s[x][y]='#';
-  for(int i = 0; i < 4; ++i){
-    if(x+dx[i]>=0&&x+dx[i]<h&&y+dy[i]>=0&&y+dy[i]<w) dfs(x+dx[i], y+dy[i]);
-  }
+	c[x][y] = '#';
+
+	rep(i, 4){
+		if(x + dx[i] >= 0
+		&& x + dx[i] < H
+		&& y + dy[i] >= 0
+		&& y + dy[i] < W){
+			dfs(x + dx[i], y + dy[i]);
+		}
+	}
 }
 
 int main(){
-  cin >> h >> w;
-  int mx, my;
-  for(int i=0; i < h; ++i){
-    for(int j=0; j < w; ++j){
-      cin >> s[i][j];
-      if(s[i][j]=='s') mx=j, my=i;
-    }
-  }
-  dfs(mx, my);
-  if(f) cout << "Yes" << endl;
-  else cout << "No" << endl;
+	cin >> H >> W;
+	rep(i, H) rep(j, W) cin >> c[i][j];
+	rep(i, H) rep(j, W){
+		if(c[i][j] == 's'){
+			dfs(i, j);
+		}
+	}
+	if(f == 1)  cout << "Yes" << endl;
+	else cout << "No" << endl;
 }
