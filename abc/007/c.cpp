@@ -29,7 +29,19 @@ typedef set<int> si;
 #define VECCIN(x) for(auto&youso_: (x) )cin>>youso_
 #define VECCOUT(x) for(auto&youso_: (x) )cout<<youso_<<" ";cout<<endl
 
+char c[50][50];
+int R, C, sy, sx, gy, gx;
+int d[50][50];
+int dx[4] = {-1, 0, 1, 0};
+int dy[4] = {0, -1, 0, 1};
+
+int bfs(){
+
+}
 
 int main(){
+    cin >> R >> C >> sy >> sx >> gy >> gx;
+    sy--; sx--; gy--; gx--;
+    rep(i, R) rep(j, C) cin >> c[i][j];
 
 }

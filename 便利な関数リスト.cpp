@@ -29,3 +29,4 @@ void sosuu(int n){
         if(n % i == 0) cout << i << endl;
     }
 }
+

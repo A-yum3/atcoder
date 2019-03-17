@@ -17,5 +17,44 @@ typedef pair<ll, ll> pll;
 #define PB push_back
 #define MOD 1000000009LL
 
+int G[110][110] = {{0}};
+bool flag[110] = {};
+bool f;
+int N, M;
+
+
+void dfs(int x){
+
+    if(flag[x] == true){
+        f = false;
+        return;
+    }
+
+    flag[x] = true;
+
+    rep(i, N){
+        if(G[x][i]){
+            G[x][i] = G[i][x] = 0;
+            dfs(i);
+        }
+    }
+}
+
+
 int main(){
+    int u, v, cnt = 0; cin >> N >> M;
+    rep(i, M){
+        cin >> u >> v;
+        u--; v--;
+        G[u][v] = G[v][u] = 1;  
+    }
+
+    rep(i, N){
+        if(flag[i]) continue;
+        f = true;
+        dfs(i);
+        if(f) cnt++;
+    }
+    cout << cnt << endl;
+    return 0;
 }
