@@ -42,7 +42,7 @@ int main(){
     rep(i, H) rep(j, W){
         cin >> c[i][j];
         if(c[i][j] == 's') if(j >= 0) sy = i, sx = j;
-        if(c[i][j] == 'g') if(j >= 0) gy = i, gy = j;
+        if(c[i][j] == 'g') if(j >= 0) gy = i, gx = j;
     }
 
     rep(i, H) rep(j, W) dist[i][j] = INF;
