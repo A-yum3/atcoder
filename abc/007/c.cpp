@@ -32,16 +32,33 @@ typedef set<int> si;
 char c[50][50];
 int R, C, sy, sx, gy, gx;
 int d[50][50];
-int dx[4] = {-1, 0, 1, 0};
+int dx[4] = {1, 0, -1, 0};
 int dy[4] = {0, -1, 0, 1};
 
 int bfs(){
+    queue<pint> que;
+    rep(i, R)  rep(j, C) d[i][j] = INF;
+    que.push(pint(sy, sx));
+    d[sy][sx] = 0;
 
+    while(que.size()){
+        pint p = que.front(); que.pop();
+        if(p.first == gy && p.second == gx) break;
+        rep(i, 4){
+            int ny = p.first + dx[i], nx = p.second + dy[i];
+            if(0 <= ny && ny < R && 0 <= nx && nx < C && c[ny][nx] != '#' && d[ny][nx] == INF){
+                que.push(pint(ny, nx));
+                d[ny][nx] = d[p.first][p.second] + 1;
+            }
+        }
+    }
+    return d[gy][gx];
 }
 
 int main(){
     cin >> R >> C >> sy >> sx >> gy >> gx;
     sy--; sx--; gy--; gx--;
     rep(i, R) rep(j, C) cin >> c[i][j];
-
+    int rel = bfs();
+    COUT(rel);
 }
