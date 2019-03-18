@@ -29,45 +29,45 @@ typedef set<int> si;
 #define VECCIN(x) for(auto&youso_: (x) )cin>>youso_
 #define VECCOUT(x) for(auto&youso_: (x) )cout<<youso_<<" ";cout<<endl
 
-int H, W, N;
-char maze[1000][1000];
-int d[1000][1000];
+int H, W;
+char s[51][51];
+int dist[51][51];
 int dx[4] = {-1, 0, 1, 0};
 int dy[4] = {0, -1, 0, 1};
-pint cheese[11];
+int sy = 0, sx = 0;
 
-int bfs(int x){
+int dfs(){
     queue<pint> que;
-    rep(i, H) rep(j, W) d[i][j] = INF;
-    int sy = cheese[x].first, sx = cheese[x].second;
-    int gy = cheese[x + 1].first, gx = cheese[x + 1].second;
+    rep(i, H) rep(j, W) dist[i][j] = -1;
+    int gy = H - 1, gx = W - 1;
     que.push(pint(sy, sx));
-    d[sy][sx] = 0;
+    dist[sy][sx] = 0;
 
     while(que.size()){
-        pint p =  que.front(); que.pop();
+        pint p = que.front(); que.pop();
         if(p.first == gy && p.second == gx) break;
+
         rep(i, 4){
-            int ny = p.first + dx[i], nx =  p.second + dy[i];
-            if(0 <= ny && ny < H && 0 <= nx && nx < W && maze[ny][nx] != 'X' && d[ny][nx] == INF){
-                d[ny][nx] = d[p.first][p.second] + 1;
+            int ny = p.first + dx[i], nx = p.second + dy[i];
+            if(0 <= ny && ny < H && 0 <= nx && nx < W && s[ny][nx] == '.' && dist[ny][nx] == -1){
+                dist[ny][nx] = dist[p.first][p.second] + 1;
                 que.push(pint(ny, nx));
             }
-        }
+        } 
     }
-    return d[gy][gx];
+    return dist[gy][gx];
 }
 
 int main(){
-    cin >> H >> W >> N;
+    cin >> H >> W;
+    int cnt = 0;
+
     rep(i, H) rep(j, W){
-        cin >> maze[i][j];
-        if(maze[i][j] == 'S'){
-            cheese[0] = pint(i, j);
-        }
-        if(maze[i][j] != 'S' && maze[i][j] != 'X' && maze[i][j] != '.') cheese[maze[i][j] - '0'] = pint(i, j);  
+        cin >> s[i][j];
+        if(s[i][j] == '.') cnt++;
     }
-    int ans = 0;
-    rep(i, N) ans += bfs(i);
-    COUT(ans);
+
+    int rel = dfs();
+    if(rel == -1) COUT(-1);
+    else COUT(cnt - rel - 1);
 }
