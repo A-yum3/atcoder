@@ -5,10 +5,10 @@ const double EPS = 1e-9;
 const int INF = 1e9;
 const int MOD = 1e9+7;
 const ll LINF = 1e18;
-typedef vector<int> vi;
-typedef vector<vector<int>> vvi;
+typedef vector<int> vint;
+typedef vector<vector<int>> vvint;
 typedef vector<vector<ll>> vll;
-typedef pair<int, int> pi;
+typedef pair<int, int> pint;
 typedef pair<ll, ll> pll;
 typedef map<int, int> mi;
 typedef set<int> si;
@@ -28,6 +28,7 @@ typedef set<int> si;
 #define COUT(x) cout << (x) << endl
 #define VECCIN(x) for(auto&youso_: (x) )cin>>youso_
 #define VECCOUT(x) for(auto&youso_: (x) )cout<<youso_<<" ";cout<<endl
+
 
 int main(){
 

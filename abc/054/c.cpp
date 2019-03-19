@@ -29,6 +29,26 @@ typedef set<int> si;
 #define VECCIN(x) for(auto&youso_: (x) )cin>>youso_
 #define VECCOUT(x) for(auto&youso_: (x) )cout<<youso_<<" ";cout<<endl
 
-int main(){
+int G[10][10];
 
+int main(){
+    int N, M; cin >> N >> M;
+    rep(i, M){
+        int a, b; cin >> a >> b;
+        a--; b--;
+        G[a][b]= G[b][a] = 1;
+    }
+
+    vi v;
+    rep(i, N) v.push_back(i);
+    int ans = 0;
+    do{
+        if(v[0] != 0) break;
+        rep(i, N - 1){
+            if(G[v[i]][v[i + 1]] == 0) break;
+            if(i == N - 1) ans++;
+        }
+    } while(next_permutation(ALL(v)));
+
+    COUT(ans);
 }
