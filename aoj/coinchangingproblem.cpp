@@ -35,5 +35,5 @@ typedef set<int> si;
 #define VECCOUT(x) for(auto&youso_: (x) )cout<<youso_<<" ";cout<<endl
 
 int main(){
-
+    
 }

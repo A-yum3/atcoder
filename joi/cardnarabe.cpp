@@ -13,11 +13,6 @@ typedef pair<ll, ll> pll;
 typedef map<int, int> mi;
 typedef set<int> si;
 #define VV(T) vector<vector< T > >
-#define dump(x)  cout << #x << " = " << (x) << endl
-#define YES(n) cout << ((n) ? "YES" : "NO"  ) << endl
-#define Yes(n) cout << ((n) ? "Yes" : "No"  ) << endl
-#define POSSIBLE(n) cout << ((n) ? "POSSIBLE" : "IMPOSSIBLE"  ) << endl
-#define Possible(n) cout << ((n) ? "Possible" : "Impossible"  ) << endl
 
 #define rep(i, n) REP(i, 0, n)                              // 0, 1, ..., n-1
 #define REP(i, x, n) for(int i = x; i < n; i++)             // x, x + 1, ..., n-1
@@ -35,5 +30,17 @@ typedef set<int> si;
 #define VECCOUT(x) for(auto&youso_: (x) )cout<<youso_<<" ";cout<<endl
 
 int main(){
-
+    int n, k; cin >> n >> k;
+    vector<string> v(n);
+    vi num(n);
+    rep(i, n) num[i] = i;
+    set<string> s;
+    rep(i, n) cin >> v[i];
+    do{
+        string S = "";
+        rep(i, k) S += v[num[i]];
+        s.insert(S);
+    } while(next_permutation(ALL(num)));
+    COUT(s.size());
+    return 0;
 }

@@ -29,7 +29,7 @@ typedef set<int> si;
 #define VECCIN(x) for(auto&youso_: (x) )cin>>youso_
 #define VECCOUT(x) for(auto&youso_: (x) )cout<<youso_<<" ";cout<<endl
 
-int G[10][10];
+int G[10][10] = {{0}};
 
 int main(){
     int N, M; cin >> N >> M;
@@ -41,13 +41,15 @@ int main(){
 
     vi v;
     rep(i, N) v.push_back(i);
+
     int ans = 0;
     do{
-        if(v[0] != 0) break;
-        rep(i, N - 1){
-            if(G[v[i]][v[i + 1]] == 0) break;
-            if(i == N - 1) ans++;
+        if(v[0] != 0) continue; // 頂点１以外は枝切り
+        bool f = true;
+        REP(i, 1, N){
+            if(!G[v[i]][v[i - 1]]) f = false; // 経路が存在しなければ出る
         }
+        if(f) ans++;
     } while(next_permutation(ALL(v)));
 
     COUT(ans);

@@ -35,5 +35,14 @@ typedef set<int> si;
 #define VECCOUT(x) for(auto&youso_: (x) )cout<<youso_<<" ";cout<<endl
 
 int main(){
-
+    int T; cin >> T;
+    rep(i, T){
+        string s; cin >> s;
+        int ans = 0, j = 0;
+        while(j < s.size()){
+            if(s.substr(j, 5) == "tokyo" || s.substr(j, 5) == "kyoto"){ans++; j += 4;}
+            j++;
+        }
+        cout << ans << endl;
+    }
 }

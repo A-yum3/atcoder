@@ -21,8 +21,6 @@ typedef set<int> si;
 
 #define rep(i, n) REP(i, 0, n)                              // 0, 1, ..., n-1
 #define REP(i, x, n) for(int i = x; i < n; i++)             // x, x + 1, ..., n-1
-#define invrep(i, n) for(int i = (n)-1; i >= 0; i--)        // n-1, n-2, ..., 0
-#define invREP(i, x, n) for(int i = (n)-1; i >= (x; i--)    // n-1, n-2, ..., x
 #define FOREACH(x,a) for(auto& (x) : (a) )
 
 #define ALL(v) (v).begin() , (v).end()
@@ -35,5 +33,14 @@ typedef set<int> si;
 #define VECCOUT(x) for(auto&youso_: (x) )cout<<youso_<<" ";cout<<endl
 
 int main(){
-
+    const int V[6] = {1, 5, 10, 50, 100, 500};
+    int a; cin >> a;
+    a = 1000 - a;
+    int ans = 0;
+    for(int i = 5; i >= 0; i--){
+        int t = a / V[i];
+        a -= t * V[i];
+        ans += t;
+    }
+    COUT(ans);
 }

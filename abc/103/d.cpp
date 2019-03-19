@@ -35,5 +35,16 @@ typedef set<int> si;
 #define VECCOUT(x) for(auto&youso_: (x) )cout<<youso_<<" ";cout<<endl
 
 int main(){
+    int N, M; cin >> N >> M;
+    vector<pi> ab(M);
+    rep(i, M) cin >> ab[i].second >> ab[i].first;
+    sort(ALL(ab));
+    int ans = 0, f = 0, pos = 0;
+    rep(i, M){
+        if(pos < ab[i].second) f = 1;
+        if(f) {ans++; f = 0; pos = ab[i].first - 1;}
+
+    }
+    cout << ans << endl;
 
 }
