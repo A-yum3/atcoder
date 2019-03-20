@@ -34,19 +34,29 @@ typedef set<int> si;
 #define VECCIN(x) for(auto&youso_: (x) )cin>>youso_
 #define VECCOUT(x) for(auto&youso_: (x) )cout<<youso_<<" ";cout<<endl
 
+string s, t;
+int S, T;
+
+bool match(int k){
+    rep(i, T){
+        if(t[i] != s[i + k] && s[i + k] != '?') return false;
+    }
+    return true;
+}
+
 int main(){
-    string sd, t; cin >> sd >> t;
-    int f = 0;
-    rep(i, sd.size()){
-        if(sd[i] != '?' && sd[i] == t[0]){
-            sd.replace(i, i + t.size(), t);
-            f = 1;
-            i += t.size();
-        }
+    cin >> s >> t;
+    S = s.size(); T = t.size();
+    int k = -1;
+    rep(i, S - T + 1){
+        if(match(i)) k = i;
     }
-    rep(i, sd.size()){
-        if(sd[i] == '?') sd.replace(i, i + 1, "a");
+    if(k == -1){
+        COUT("UNRESTORABLE");
+        return 0;
     }
-    if(f) COUT(sd);
-    else COUT("UNRESTORABLE");
+    string ans = s;
+    rep(i, T)ans[i + k] = t[i];
+    rep(i, S) if(ans[i] == '?') ans[i] = 'a';
+    COUT(ans);
 }

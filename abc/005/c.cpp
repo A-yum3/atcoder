@@ -35,10 +35,27 @@ typedef set<int> si;
 #define VECCOUT(x) for(auto&youso_: (x) )cout<<youso_<<" ";cout<<endl
 
 int main(){
-    ll X, Y; cin >> X >> Y;
-    int ans = 0;
-    for(ll i = X; i <= Y; i *= 2){
-        ans++;
+    int T, N, M; cin >> T >> N;
+    vi A(100), B(100);
+    int used[100];
+    rep(i, 100) used[i] = 0;
+    rep(i, N) cin >> A[i];
+    cin >> M;
+    rep(i, M) cin >> B[i];
+    int f = 0;
+    rep(i, M){
+        f = 0;
+        rep(j, N){
+            if(A[j] <= B[i] && B[i] <= A[j] + T){
+                used[j] = 1;
+                f = 1;
+                break;
+            }
+        }
+        int k = 0;
+        rep(j, N) if(!used[j]) A[k++] = A[j];
+        if(!f) break;
     }
-    COUT(ans);
+    if(f) COUT("yes");
+    else COUT("no");
 }
