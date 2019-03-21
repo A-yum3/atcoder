@@ -34,6 +34,10 @@ typedef set<int> si;
 #define VECCIN(x) for(auto&youso_: (x) )cin>>youso_
 #define VECCOUT(x) for(auto&youso_: (x) )cout<<youso_<<" ";cout<<endl
 
+template<class T> inline bool chmax(T& a, T b) { if (a < b) { a = b; return 1; } return 0; }
+template<class T> inline bool chmin(T& a, T b) { if (a > b) { a = b; return 1; } return 0; }
+
+
 int main(){
 
 }
