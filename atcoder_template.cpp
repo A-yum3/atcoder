@@ -39,5 +39,9 @@ template<class T> inline bool chmin(T& a, T b) { if (a > b) { a = b; return 1; }
 
 
 int main(){
+    cin.tie(0);
+    ios::sync_with_stdio(false);
+
+    
 
 }
