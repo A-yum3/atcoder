@@ -17,9 +17,6 @@ int SumOfDigit(int n){
 // 最大公約数を変換するgcd(ユークリッド互除法)
 int gcd(int a, int b) { return b ? gcd(b, a%b) : a;}
 
-// 文字列反転
-// reverse(スタート、終点)
-
 // 事故防止のためにグローバル変数で宣言すると気が楽
 
 // 素数を求める
