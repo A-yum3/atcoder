@@ -7,7 +7,6 @@ const int MOD = 1e9+7;
 const ll LINF = 1e18;
 typedef vector<int> vi;
 typedef vector<vector<int>> vvi;
-typedef vector<vector<ll>> vll;
 typedef pair<int, int> pi;
 typedef pair<ll, ll> pll;
 typedef map<int, int> mi;
