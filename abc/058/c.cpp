@@ -44,5 +44,24 @@ int main(){
     cin.tie(0);
     ios::sync_with_stdio(false);
 
+    int N; cin >> N;
+    int m[N][26] = {};
+    
+    rep (i, N) {
+        string s;
+        cin >> s;
+        for (int j = 0; j < s.size(); j++) {
+            m[i][s[j] - 'a']++;
+        }
+    }
 
+    rep (i, 26) {
+        int mi = INF;
+        rep (j, N) {
+            mi = min(mi, m[j][i]);
+        }
+        cout << string(mi, i + 'a');
+    }
+    cout << endl;
+    return 0;
 }
