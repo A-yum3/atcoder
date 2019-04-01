@@ -21,7 +21,6 @@ typedef set<int> si;
 #define rep(i, n) REP(i, 0, n)                              // 0, 1, ..., n-1
 #define REP(i, x, n) for(int i = x; i < n; i++)             // x, x + 1, ..., n-1
 #define FOREACH(x,a) for(auto& (x) : (a) )
-#define SORT(x) sort(x.begin(), x.end())
 
 #define ALL(v) (v).begin() , (v).end()
 #define RALL(v) (v).rbegin(), (v).rend()
@@ -43,5 +42,6 @@ template<class T> inline bool chmin(T& a, T b) { if (a > b) { a = b; return 1; }
 int main(){
     cin.tie(0);
     ios::sync_with_stdio(false);
+
 
 }

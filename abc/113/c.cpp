@@ -7,7 +7,6 @@ const int MOD = 1e9+7;
 const ll LINF = 1e18;
 typedef vector<int> vi;
 typedef vector<vector<int>> vvi;
-typedef vector<vector<ll>> vll;
 typedef pair<int, int> pi;
 typedef pair<ll, ll> pll;
 typedef map<int, int> mi;
@@ -21,14 +20,17 @@ typedef set<int> si;
 
 #define rep(i, n) REP(i, 0, n)                              // 0, 1, ..., n-1
 #define REP(i, x, n) for(int i = x; i < n; i++)             // x, x + 1, ..., n-1
-#define invrep(i, n) for(int i = (n)-1; i >= 0; i--)        // n-1, n-2, ..., 0
-#define invREP(i, x, n) for(int i = (n)-1; i >= (x; i--)    // n-1, n-2, ..., x
 #define FOREACH(x,a) for(auto& (x) : (a) )
+#define SORT(x) sort(x.begin(), x.end())
 
 #define ALL(v) (v).begin() , (v).end()
 #define RALL(v) (v).rbegin(), (v).rend()
 
-#define PB push_back
+#define pb push_back
+#define pu push
+#define mp make_pair
+#define fi first
+#define sc second
 
 #define COUT(x) cout << (x) << endl
 #define VECCIN(x) for(auto&youso_: (x) )cin>>youso_
@@ -39,5 +41,22 @@ template<class T> inline bool chmin(T& a, T b) { if (a > b) { a = b; return 1; }
 
 
 int main(){
-    return 0;
+    cin.tie(0);
+    ios::sync_with_stdio(false);
+
+    int N, M; cin >> N >> M;
+    vi number[100001];
+    int P[100000], Y[100000];
+    rep (i, M) {
+        cin >> P[i] >> Y[i];
+        number[P[i]].push_back(Y[i]); // 連結リスト
+    }
+
+    rep (i, N) {
+        sort(number[i + 1].begin(), number[i + 1].end()); // 0は含まないため1~ソートする
+    }
+    
+    rep (i, M) {
+        printf("%012lld\n", ll(P[i]) * 1000000 + int(lower_bound(number[P[i]].begin(), number[P[i]].end(), Y[i]) - number[P[i]].begin()) + 1); // Y[i]の位置　- 先頭のイテレータ + 1
+    }
 }
