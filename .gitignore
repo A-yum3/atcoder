@@ -1,5 +1,5 @@
 .vscode/settings.json
 CMakeLists.txt
-./vscode/ipch/
-./vs/
+/vscode/ipch/
+/vs/
 
