@@ -38,10 +38,30 @@ typedef set<int> si;
 template<class T> inline bool chmax(T& a, T b) { if (a < b) { a = b; return 1; } return 0; }
 template<class T> inline bool chmin(T& a, T b) { if (a > b) { a = b; return 1; } return 0; }
 
+int n, f[105][15], p[105][15], cnt, ans=-(1<<30), c;
+
 
 int main(){
     cin.tie(0);
     ios::sync_with_stdio(false);
 
-    
+    cin>>n;
+	for(int i=0;i<n;i++){
+		for(int j=0;j<10;j++)cin>>f[i][j];
+	}
+	for(int i=0;i<n;i++){
+		for(int j=0;j<11;j++)cin>>p[i][j];
+	}
+	for(int i=1;i<(1<<10);i++){
+	    cnt=0;
+		for(int j=0;j<n;j++){
+		    c=0;
+			for(int k=0;k<10;k++){
+				if((i>>k&1)&&f[j][k])c++;
+			}
+			cnt+=p[j][c];
+		}
+		ans=max(ans,cnt);
+	}
+	cout<<ans<<endl;
 }
