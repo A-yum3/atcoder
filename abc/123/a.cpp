@@ -43,5 +43,18 @@ int main(){
     cin.tie(0);
     ios::sync_with_stdio(false);
 
-    
+    int a[6];
+    rep(i, 6) {
+        cin >> a[i];
+    }
+
+    rep(i, 4) {
+        for(int j = i + 1; j < 5; j++) {
+            if (a[5] < a[j] - a[i]) {
+                COUT(":(");
+                return 0;
+            }
+        }
+    }
+    COUT("Yay!");
 }

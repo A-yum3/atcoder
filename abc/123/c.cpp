@@ -43,5 +43,13 @@ int main(){
     cin.tie(0);
     ios::sync_with_stdio(false);
 
-    
+    ll n; cin >> n;
+    ll MIN = 1000000000000001;
+    rep (i, 5) {
+        ll a; cin >> a;
+        MIN = min(MIN, a);
+    }
+    ll ans = ((n  + (MIN - 1)) / MIN) + 4;
+
+    COUT(ans);
 }

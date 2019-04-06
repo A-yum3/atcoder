@@ -43,5 +43,30 @@ int main(){
     cin.tie(0);
     ios::sync_with_stdio(false);
 
-    
+    vi a(5);
+    int cnt = 0;
+    rep (i, 5) {
+        cin >> a[i];
+        if (a[i] % 10 == 0) cnt++;
+    }
+
+    int ans = 0;
+    rep (i, 5) {
+        int mmod = -1;
+        int index = -1;
+        rep (j, a.size()) {
+            if(a[j] % 10 > mmod) {
+                mmod = a[j] % 10;
+                index = j;
+            }
+        }
+        if( (5 - cnt) <= (i + 1)) {
+            ans += a[index];
+        } else {
+            ans += a[index];
+            ans += 10 - (ans % 10);
+        }
+        a.erase(a.begin() + index);
+    }
+    COUT(ans);
 }
