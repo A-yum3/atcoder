@@ -40,6 +40,15 @@ template<class T> inline bool chmin(T& a, T b) { if (a > b) { a = b; return 1; }
 
 int main(){
     int N; cin >> N;
-    vi C(N);
-    rep(i, N) cin >> C[i];
+    vi C(N); rep(i, N) cin >> C[i];
+    double res = 0.0;
+    rep (i, N) {
+        int num = 0;
+        rep (j, N) {
+            if (j == i) continue;
+            if (C[i] % C[j] == 0) ++num;
+        }
+        res += (double)((num + 2) / 2) / (num + 1);
+    }
+    cout << fixed << setprecision(10) << res << endl;
 }
