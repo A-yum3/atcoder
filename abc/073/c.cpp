@@ -20,7 +20,7 @@ typedef set<int> si;
 
 #define rep(i, n) REP(i, 0, n)                              // 0, 1, ..., n-1
 #define REP(i, x, n) for(int i = x; i < n; i++)             // x, x + 1, ..., n-1
-#define FOREACH(x,a) for(auto& (x) : (a) )
+#define FOREACH(x,a) for(auto& (x) : (a) )S
 
 #define ALL(v) (v).begin() , (v).end()
 #define RALL(v) (v).rbegin(), (v).rend()
@@ -38,27 +38,11 @@ typedef set<int> si;
 template<class T> inline bool chmax(T& a, T b) { if (a < b) { a = b; return 1; } return 0; }
 template<class T> inline bool chmin(T& a, T b) { if (a > b) { a = b; return 1; } return 0; }
 
-int n, f[105][15], p[105][15], cnt, ans=-(1<<30), c;
-
 
 int main(){
     cin.tie(0);
     ios::sync_with_stdio(false);
 
-    cin >> n;
-    rep (i, n) rep (j, 10) cin >>f[i][j];
-    rep (i, n) rep (j, 11) cin >> p[i][j];
+    int N; cin >> N;
 
-    for (int i = 1; i < (1<<10); i++) {
-        cnt = 0;
-        rep (j, n) {
-            c = 0;
-            for (int k = 0; k < 10; k++) {
-                if ((i >> k & 1)  && f[j][k]) c++;
-            }
-            cnt += p[j][c];
-        }
-        ans = max(ans, cnt);
-    }
-    COUT(ans);
 }
