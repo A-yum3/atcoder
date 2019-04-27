@@ -2,45 +2,52 @@
 using namespace std;
 typedef long long ll;
 const double EPS = 1e-9;
-typedef vector<int> vint;
-typedef pair<int, int> pint;
-#define rep(i, n) REP(i, 0, n)
-#define ALL(v) v.begin() , v.end()
-#define REP(i, x, n) for(int i = x; i < n; i++)
+const int INF = 1e9;
+const int MOD = 1e9+7;
+const ll LINF = 1e18;
+typedef vector<int> vi;
+typedef vector<vector<int>> vvi;
+typedef pair<int, int> pi;
+typedef pair<ll, ll> pll;
+typedef map<int, int> mi;
+typedef set<int> si;
+#define VV(T) vector<vector< T > >
+#define dump(x)  cout << #x << " = " << (x) << endl
+#define YES(n) cout << ((n) ? "YES" : "NO"  ) << endl
+#define Yes(n) cout << ((n) ? "Yes" : "No"  ) << endl
+#define POSSIBLE(n) cout << ((n) ? "POSSIBLE" : "IMPOSSIBLE"  ) << endl
+#define Possible(n) cout << ((n) ? "Possible" : "Impossible"  ) << endl
 
-int N, A[100001], mins[100001],maxs[100001],sum=0,rel=0,cnt=0;
+#define rep(i, n) REP(i, 0, n)                              // 0, 1, ..., n-1
+#define REP(i, x, n) for(int i = x; i < n; i++)             // x, x + 1, ..., n-1
+#define FOREACH(x,a) for(auto& (x) : (a) )
+
+#define ALL(v) (v).begin() , (v).end()
+#define RALL(v) (v).rbegin(), (v).rend()
+
+#define pb push_back
+#define pu push
+#define mp make_pair
+#define fi first
+#define sc second
+
+#define COUT(x) cout << (x) << endl
+#define VECCIN(x) for(auto&youso_: (x) )cin>>youso_
+#define VECCOUT(x) for(auto&youso_: (x) )cout<<youso_<<" ";cout<<endl
+
+template<class T> inline bool chmax(T& a, T b) { if (a < b) { a = b; return 1; } return 0; }
+template<class T> inline bool chmin(T& a, T b) { if (a > b) { a = b; return 1; } return 0; }
+
+
 int main(){
-  cin >> N;
-  rep(i, N) cin >> A[i];
-  sort(A, A+N);
-  int N_A = (N%2==0) ? N/2 : N/2+1;
-  for(int i=0; i < N_A; i++) mins[i] = A[i];
-  for(int j=N_A; j < N; j++){
-    maxs[cnt] = A[j];
-    cnt++;
-  }
-  for(int p=0; p < N - N_A; p++){
-    for(int i=0; i < N_A; i++){
-      sum = 0;
+    cin.tie(0);
+    ios::sync_with_stdio(false);
 
-      for(int j=0; j < N_A - 1; j++){
-        sum += abs(mins[j] - maxs[j]) + abs(mins[j+1] - maxs[j]);
-      }
-
-      rel = max(sum, rel);
-
-      int tmp = mins[N_A - 1];
-      for(int k=0; k < N_A; k++){
-        mins[N_A - 1 - k] = mins[N_A - 1 - (k + 1)];
-      }
-      mins[0] = tmp;
-
+    int N; cin >> N;
+    ll h = 1;
+    double n = 1;
+    double w = 1;
+    for(h = 1; h <= 3500; h++) {
+      
     }
-    int tmp = maxs[N - N_A - 1];
-    for(int k=0; k < N - N_A; k++){
-      maxs[N - N_A - k] = maxs[N - N_A - 1 - (k + 1)];
-    }
-    maxs[0] = tmp;
-  }
-  cout << rel << endl;
 }

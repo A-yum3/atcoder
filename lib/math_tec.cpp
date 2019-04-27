@@ -5,6 +5,12 @@ int gcd(int a, int b) {
     return gcd(b, a % b);
 }
 
+// 最小公倍数(lcm)
+ll lcm(ll a, ll b) {
+    ll g = gcd(a, b);
+    return a / g * b;
+}
+
 // 拡張ユークリッドの互除法
 int extgcd(int a, int b, int& x, int& y) {
     int d = a;
