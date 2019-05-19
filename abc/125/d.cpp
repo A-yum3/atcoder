@@ -44,9 +44,16 @@ int main(){
     ios::sync_with_stdio(false);
 
     int N; cin >> N;
-    vi a(N);
+    vector<ll> a(N);
     rep(i, N) cin >> a[i];
-    for(int i = 0; i < N; i += 2) {
-        if(a[i] + a[i + 1] < (a[i] * - 1) + (a[i + 1] * - 1))
+    int num_minus = 0;
+    ll mi = 1LL << 60;
+    ll sum = 0;
+    for(int i = 0; i < N; i++) {
+        if (a[i] < 0) num_minus++;
+        chmin(mi, abs(a[i]));
+        sum += abs(a[i]);
     }
+    if(num_minus % 2 == 0) COUT(sum);
+    else COUT(sum - mi * 2);
 }

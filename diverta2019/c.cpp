@@ -38,45 +38,42 @@ typedef set<int> si;
 template<class T> inline bool chmax(T& a, T b) { if (a < b) { a = b; return 1; } return 0; }
 template<class T> inline bool chmin(T& a, T b) { if (a > b) { a = b; return 1; } return 0; }
 
+int count(const string &S) {
+    int res = 0;
+    for (int i = 0; i + 1 < S.size(); ++i) {
+        if (S[i] == 'A' && S[i + 1] == 'B') ++res;
+    }
+    return res;
+}
+
+int N;
+vector<string> S;
+
+ll solve() {
+    ll res = 0;
+    for (int i = 0; i < N; i++) res += count(S[i]);
+
+    int a = 0, b = 0, c = 0;
+    for (int i = 0; i < N; i++) {
+        if (S[i][0] == 'B' && S[i].back() == 'A') ++a;
+        else if(S[i].back() == 'A') ++b;
+        else if(S[i][0] == 'B') ++c;
+    }
+    ll add = 0;
+    if (b + c == 0) add = max(0, a - 1);
+    else add = a + min(b, c);
+
+    res += add;
+    return res;
+}
 
 int main(){
     cin.tie(0);
     ios::sync_with_stdio(false);
 
-    int n; cin >> n;
-    vector<string> ab(n);
-    vector<string> bonly(n);
-    string gomi = "";
-    string ans = "";
-    int ci = 0, cj = 0;
-    rep(i, n) {
-        string s; cin >> s;
-        if(s[s.size()] == 'A') {ab.push_back(s); ci++;}
-        else if(s[0] == 'B') {bonly.push_back(s); cj++;}
-        else gomi = gomi + s;
+    while(cin >> N) {
+        S.resize(N);
+        for (int i = 0; i < N; i++) cin >> S[i];
+        cout << solve() << endl;
     }
-
-    int i = 1, j = 0;
-    ans = ab[0];
-    while(i != ci && cj != j) {
-        if(ans[ans.size()] == 'A') {
-            ans = ans + bonly[j++];
-        }
-        else if(ans[0] == 'B') {
-            ans = ab[i++] + ans;
-        }
-        else if(ci == i){
-            ans = bonly[j++] + ans;
-        }
-        else if(cj == j) {
-            ans = ans + ab[i++];
-        }
-    }
-    ans = ans + gomi;
-    int rel = 0;
-    rep(k, n - 1) {
-        if(ans[k] == 'A' && ans[k + 1] == 'B') rel++;
-    }
-    COUT(rel);
-
 }

@@ -38,23 +38,43 @@ typedef set<int> si;
 template<class T> inline bool chmax(T& a, T b) { if (a < b) { a = b; return 1; } return 0; }
 template<class T> inline bool chmin(T& a, T b) { if (a > b) { a = b; return 1; } return 0; }
 
-char board[1010][1010];
+vector<string> fi;
+int dx[4] = {1, 0, -1, 0};
+int dy[4] = {0, 1, 0, -1};
 
 int main(){
     cin.tie(0);
     ios::sync_with_stdio(false);
 
     int H, W; cin >> H >> W;
-    int ans = 0;
-    int cnt = 0;
-    rep(i, H) {
-        rep(j, W) {
-            cin >> board[i][j];
-            if(board[i][j] == '#') cnt++;
+    fi.resize(H);
+    rep(i, H) cin >> fi[i];
+
+    vector<vector<int>> dist(H, vector<int>(W, -1));
+    queue<pi> que;
+    rep(i, H) rep(j, W) {
+        if(fi[i][j] == '#'){
+            dist[i][j] = 0;
+            que.push(make_pair(i, j));
         }
     }
 
-    int temp = H * W - cnt * 4;
-    ans = (temp + (4 - 1)) / 4;
-    COUT(ans);
+    while(!que.empty()) {
+        auto cur = que.front();
+        que.pop();
+        for(int dir = 0; dir < 4; dir++) {
+            int nx = cur.first + dx[dir];
+            int ny = cur.second + dy[dir];
+            if(nx < 0 || nx >= H || ny < 0 || ny >= W) continue;
+            if(dist[nx][ny] == -1) {
+                dist[nx][ny] = dist[cur.first][cur.second] + 1;
+                que.push(make_pair(nx, ny));
+            }
+        }
+    }
+    int res = 0;
+    rep(i, H) rep(j, W) {
+        res = max(res, dist[i][j]);
+    }
+    COUT(res);
 }
