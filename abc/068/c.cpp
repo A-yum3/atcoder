@@ -43,5 +43,17 @@ int main(){
     ios::sync_with_stdio(false);
 
     int N, M; cin >> N >> M;
-
+    vector<bool> start(N, false);
+    vector<bool> goal(N, false);
+    rep(i, M) {
+        int a, b; cin >> a >> b;
+        if(a == 1) start[b - 1] = true;
+        if(b == N) goal[a - 1] = true;
+    }
+    int flg = 0;
+    rep(i, N) {
+        if(start[i] && goal[i]) flg = 1;
+    }
+    if(flg) COUT("POSSIBLE");
+    else COUT("IMPOSSIBLE");
 }
