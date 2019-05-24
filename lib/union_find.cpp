@@ -17,7 +17,7 @@ public:
     // Member Function
     // Find
     // xの属する根の検索を行う
-    ll root(ll x) { 
+    ll root(ll x) {
         while (par[x] != x) {
             x = par[x] = par[par[x]]; // x の親の親を x の親とする
         }
@@ -37,7 +37,7 @@ public:
         return true;
     }
     // xとyが連結をしているか判定を行う。
-    bool issame(ll x, ll y) { 
+    bool issame(ll x, ll y) {
         return root(x) == root(y);
     }
     // 頂点xが属する素集合のサイズを求める。
