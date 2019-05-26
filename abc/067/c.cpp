@@ -43,16 +43,19 @@ int main(){
     cin.tie(0);
     ios::sync_with_stdio(false);
 
-    int N; cin >> N;
-    ll X = 0, x = 0, ans = INF;
-    vector<ll> a(N);
-    rep(i, N) {
+    int n; cin >> n;
+    vector<ll> a(n);
+    ll X = 0;
+    rep(i, n) {
         cin >> a[i];
         X += a[i];
     }
-    rep(i, N) {
+    ll ans = 1e18;
+    ll x = 0;
+    rep(i, n) {
         x += a[i];
-        if(i + 1 < N) ans = min(ans, abs(X - 2 * x));
+        if(i + 1 < n) ans = min(ans, abs(X - 2 * x));
     }
     COUT(ans);
+
 }

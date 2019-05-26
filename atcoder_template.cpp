@@ -25,19 +25,10 @@ typedef set<int> si;
 #define ALL(v) (v).begin() , (v).end()
 #define RALL(v) (v).rbegin(), (v).rend()
 
-#define pb push_back
-#define pu push
-#define mp make_pair
-#define fi first
-#define sc second
-
 #define COUT(x) cout << (x) << endl
-#define VECCIN(x) for(auto&youso_: (x) )cin>>youso_
-#define VECCOUT(x) for(auto&youso_: (x) )cout<<youso_<<" ";cout<<endl
 
 template<class T> inline bool chmax(T& a, T b) { if (a < b) { a = b; return 1; } return 0; }
 template<class T> inline bool chmin(T& a, T b) { if (a > b) { a = b; return 1; } return 0; }
-
 
 int main(){
     cin.tie(0);

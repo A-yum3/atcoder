@@ -1,13 +1,14 @@
 #include <bits/stdc++.h>
 using namespace std;
 // TODO: 当然のごとく整備後クラス化
-
-struct edge{ int to, cost; };
 typedef pair<int, int> P; // firstは最短距離、secondは頂点番号
 
+
+struct edge{ int to, cost; };
+
 int V;
-vector<edge> G[MAX_V];
-int d[MAX_V];
+vector<edge> G[MAX_V]; //グラフ
+int d[MAX_V]; // 頂点Sからの最短距離
 int prev[MAX_V];
 
 void dijkstra(int s) {

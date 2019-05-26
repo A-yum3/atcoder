@@ -7,8 +7,8 @@ const int MOD = 1e9+7;
 const ll LINF = 1e18;
 typedef vector<int> vi;
 typedef vector<vector<int>> vvi;
-typedef pair<int, int> pi;
-typedef pair<ll, ll> pll;
+typedef pair<int, int> P;
+typedef pair<ll, ll> PL;
 typedef map<int, int> mi;
 typedef set<int> si;
 #define VV(T) vector<vector< T > >
@@ -25,28 +25,30 @@ typedef set<int> si;
 #define ALL(v) (v).begin() , (v).end()
 #define RALL(v) (v).rbegin(), (v).rend()
 
+#define pb push_back
+#define pu push
+#define mp make_pair
+#define fi first
+#define sc second
+
 #define COUT(x) cout << (x) << endl
+#define VECCIN(x) for(auto&youso_: (x) )cin>>youso_
+#define VECCOUT(x) for(auto&youso_: (x) )cout<<youso_<<" ";cout<<endl
 
 template<class T> inline bool chmax(T& a, T b) { if (a < b) { a = b; return 1; } return 0; }
 template<class T> inline bool chmin(T& a, T b) { if (a > b) { a = b; return 1; } return 0; }
+
+int n, a, b, m;
+int G[110][110]
 
 
 int main(){
     cin.tie(0);
     ios::sync_with_stdio(false);
 
-    int n; cin >> n;
-    map<int, int> ma;
-    rep(i, n) {
-        int a; cin >> a;
-        ma[a]++;
+    cin >> n >> a >> b >> m;
+    rep(i, m) {
+        int x,y; cin >> x >> y;
+        G[x][y] = G[y][x] = 1;
     }
-    int cnt = 0;
-    for(auto itr = ma.begin(); itr != ma.end(); ++itr) {
-        if(itr->second % 2) {
-            cnt++;
-        }
-    }
-    COUT(cnt);
-
 }
