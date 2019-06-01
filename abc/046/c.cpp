@@ -18,8 +18,8 @@ typedef set<int> SI;
 #define POSSIBLE(n) cout << ((n) ? "POSSIBLE" : "IMPOSSIBLE"  ) << endl
 #define Possible(n) cout << ((n) ? "Possible" : "Impossible"  ) << endl
 
-#define rep(i, n) REP(i, 0, n)                              // 0, 1, ..., n-1
-#define REP(i, x, n) for(int i = x; i < n; i++)             // x, x + 1, ..., n-1
+#define rep(i, n) REP(i, 0, n)
+#define REP(i, x, n) for(int i = x; i < n; i++)
 #define FOREACH(x,a) for(auto& (x) : (a) )
 
 #define ALL(v) (v).begin() , (v).end()
@@ -34,4 +34,9 @@ int main(){
     cin.tie(0);
     ios::sync_with_stdio(false);
 
+    int n; cin >> n;
+    ll ans = 0;
+    rep(i, n) {
+
+    }
 }
