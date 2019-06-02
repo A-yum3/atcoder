@@ -18,8 +18,8 @@ typedef set<int> SI;
 #define POSSIBLE(n) cout << ((n) ? "POSSIBLE" : "IMPOSSIBLE"  ) << endl
 #define Possible(n) cout << ((n) ? "Possible" : "Impossible"  ) << endl
 
-#define rep(i, n) REP(i, 0, n)
-#define REP(i, x, n) for(int i = x; i < n; i++)
+#define rep(i, n) REP(i, 0, n)                              // 0, 1, ..., n-1
+#define REP(i, x, n) for(int i = x; i < n; i++)             // x, x + 1, ..., n-1
 #define FOREACH(x,a) for(auto& (x) : (a) )
 
 #define ALL(v) (v).begin() , (v).end()
@@ -30,13 +30,15 @@ template<class T> inline bool chmax(T& a, T b) { if (a < b) { a = b; return 1; }
 template<class T> inline bool chmin(T& a, T b) { if (a > b) { a = b; return 1; } return 0; }
 
 
-int main(){}
+int main(){
     cin.tie(0);
     ios::sync_with_stdio(false);
 
-    int n; cin >> n;
-    ll ans = 0;
-    rep(i, n) {
-
+    string s; cin >> s;
+    int cnt = 0;
+    for(int i = 0; i < s.size(); i++) {
+        if(s[i] == 'o') cnt++;
     }
+    if((15 - s.size()) + cnt >= 8) cout << "YES" << endl;
+    else cout << "NO" << endl;
 }
