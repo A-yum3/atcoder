@@ -6,3 +6,4 @@ CMakeLists.txt
 */*/*.exe
 *.exe
 */*.exe
+*/*.out
