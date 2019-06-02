@@ -38,17 +38,3 @@ typedef set<int> si;
 template<class T> inline bool chmax(T& a, T b) { if (a < b) { a = b; return 1; } return 0; }
 template<class T> inline bool chmin(T& a, T b) { if (a > b) { a = b; return 1; } return 0; }
 
-int n, a, b, m;
-int G[110][110]
-
-
-int main(){
-    cin.tie(0);
-    ios::sync_with_stdio(false);
-
-    cin >> n >> a >> b >> m;
-    rep(i, m) {
-        int x,y; cin >> x >> y;
-        G[x][y] = G[y][x] = 1;
-    }
-}
