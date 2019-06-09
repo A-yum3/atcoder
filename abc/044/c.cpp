@@ -23,13 +23,8 @@ int main(){
     cin.tie(0);
     ios::sync_with_stdio(false);
 
-    int n; cin >> n;
-    ll ansa = 1, ansb = 1;
+    int n, a; cin >> n >> a;
     rep(i, n) {
-        ll x, y; cin >> x >> y;
-        ll n = max((ansa + x - 1) / x , (ansb + y - 1) / y);
-        ansa = x * n;
-        ansb = y * n;
+        
     }
-    COUT(ansa + ansb);
 }
