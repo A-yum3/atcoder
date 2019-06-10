@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 typedef long long ll;
+const int MOD = 1e9+7;
 #define dump(x)  cout << #x << " = " << (x) << endl
 #define YES(n) cout << ((n) ? "YES" : "NO"  ) << endl
 #define Yes(n) cout << ((n) ? "Yes" : "No"  ) << endl
@@ -24,12 +25,12 @@ int main(){
     ios::sync_with_stdio(false);
 
     int n; cin >> n;
-    ll ansa = 1, ansb = 1;
-    rep(i, n) {
-        ll x, y; cin >> x >> y;
-        ll n = max((ansa + x - 1) / x , (ansb + y - 1) / y);
-        ansa = x * n;
-        ansb = y * n;
+    map<int, int> M;
+    for(int i = 0; i < n; ++i) {
+        int a; cin >> a; M[a]++;
     }
-    COUT(ansa + ansb);
+    int ans = 1;
+    for(int i = n - 1; i >= 0; i -= 2) ans = (ans * M[i]) % MOD;
+    for(int i = n - 1; i >= 2; i -= 2) ans = (ans * (M[i] - 1)) % MOD;
+    COUT(ans);
 }

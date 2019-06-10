@@ -23,13 +23,20 @@ int main(){
     cin.tie(0);
     ios::sync_with_stdio(false);
 
-    int n; cin >> n;
-    ll ansa = 1, ansb = 1;
-    rep(i, n) {
-        ll x, y; cin >> x >> y;
-        ll n = max((ansa + x - 1) / x , (ansb + y - 1) / y);
-        ansa = x * n;
-        ansb = y * n;
+    int n, q; cin >> n >> q;
+    vector<int> imos(n + 1);
+    rep(i, q) {
+        int l, r; cin >> l >> r;
+        imos[l - 1]++;
+        imos[r]--;
     }
-    COUT(ansa + ansb);
+    rep(i, n) {
+        imos[i + 1] += imos[i];
+    }
+    string ans = "";
+    rep(i, n) {
+        if(imos[i] % 2) ans += "1";
+        else ans += "0";
+    }
+    COUT(ans);
 }

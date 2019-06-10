@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 typedef long long ll;
+const int MOD = 1e9+7;
 #define dump(x)  cout << #x << " = " << (x) << endl
 #define YES(n) cout << ((n) ? "YES" : "NO"  ) << endl
 #define Yes(n) cout << ((n) ? "Yes" : "No"  ) << endl
@@ -19,17 +20,28 @@ typedef long long ll;
 template<class T> inline bool chmax(T& a, T b) { if (a < b) { a = b; return 1; } return 0; }
 template<class T> inline bool chmin(T& a, T b) { if (a > b) { a = b; return 1; } return 0; }
 
+
 int main(){
     cin.tie(0);
     ios::sync_with_stdio(false);
 
-    int n; cin >> n;
-    ll ansa = 1, ansb = 1;
-    rep(i, n) {
-        ll x, y; cin >> x >> y;
-        ll n = max((ansa + x - 1) / x , (ansb + y - 1) / y);
-        ansa = x * n;
-        ansb = y * n;
+    int N, m; cin >> N >> m;
+    vector<int> check(N + 1, true);
+    rep(i, m) {
+        int a; cin >> a;
+        check[a] = false;
     }
-    COUT(ansa + ansb);
+
+    vector<ll> dp(N + 1);
+    dp[0] = 1;
+    for(int now = 0; now < N; now++) {
+        for(int next = now + 1; next <= min(N, now + 2); next++){
+            if(check[next]){
+                dp[next] += dp[now];
+                dp[next] %= MOD;
+            }
+        }
+    }
+
+    COUT(dp[N]);
 }

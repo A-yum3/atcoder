@@ -24,12 +24,38 @@ int main(){
     ios::sync_with_stdio(false);
 
     int n; cin >> n;
-    ll ansa = 1, ansb = 1;
-    rep(i, n) {
-        ll x, y; cin >> x >> y;
-        ll n = max((ansa + x - 1) / x , (ansb + y - 1) / y);
-        ansa = x * n;
-        ansb = y * n;
+    vector<int> a(n);
+    rep(i, n) cin >> a[i];
+
+    int ans = -1e8;
+    for(int i = 0; i < n; i++) { // 高橋の位置
+        int maxA = -1e8, maxT = -1e8;
+        for(int j = 0; j < n; j++){ // 青木の位置
+            if(i == j) continue;
+            vector<int> v;
+
+            // 2つの〇の配列を取り出す
+            for(int k = min(i, j); k <= max(i, j); k++) {
+                v.push_back(a[k]);
+            }
+
+            // 青木君と高橋くんの得点を求める
+            int size = v.size(), sumA = 0, sumT = 0;
+            for(int k = 0; k < size; k++) {
+                if(k % 2 == 0) {
+                    sumT += v[k];
+                }
+                else {
+                    sumA += v[k];
+                }
+            }
+
+            if(sumA > maxA) {
+                maxA = sumA;
+                maxT = sumT;
+            }
+        }
+        ans = max(ans, maxT);
     }
-    COUT(ansa + ansb);
+    COUT(ans);
 }

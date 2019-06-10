@@ -24,12 +24,18 @@ int main(){
     ios::sync_with_stdio(false);
 
     int n; cin >> n;
-    ll ansa = 1, ansb = 1;
+    map<int, int> mp;
+    int a[n];
     rep(i, n) {
-        ll x, y; cin >> x >> y;
-        ll n = max((ansa + x - 1) / x , (ansb + y - 1) / y);
-        ansa = x * n;
-        ansb = y * n;
+        cin >> a[i];
+        mp[a[i]]++;
     }
-    COUT(ansa + ansb);
+    int k = 0;
+    for(auto &p : mp) {
+        p.second = k;
+        k++;
+    }
+    rep(i, n) {
+        cout << mp[a[i]] << endl;
+    }
 }
