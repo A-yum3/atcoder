@@ -20,9 +20,36 @@ typedef long long ll;
 template<class T> inline bool chmax(T& a, T b) { if (a < b) { a = b; return 1; } return 0; }
 template<class T> inline bool chmin(T& a, T b) { if (a > b) { a = b; return 1; } return 0; }
 
+
+void insertionSort(int A[], int N) {
+    for(int i = 1; i < N; ++i) {
+        int v = A[i];
+        int j = i - 1;
+        while(j >= 0 && A[j] > v) {
+            A[j + 1] = A[j];
+            --j;
+        }
+        A[j + 1] = v;
+
+        rep(i, N) {
+            if(i) cout << " ";
+            cout << A[i];
+        }
+        cout << endl;
+    }
+}
+
 int main(){
     cin.tie(0);
     ios::sync_with_stdio(false);
 
-
+    int A[100];
+    int n; cin >> n;
+    rep(i, n) cin >> A[i];
+    rep(i, n) {
+        if(i) cout << " ";
+        cout << A[i];
+    }
+    cout << endl;
+    insertionSort(A, n);
 }

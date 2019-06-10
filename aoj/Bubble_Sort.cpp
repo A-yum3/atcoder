@@ -1,6 +1,5 @@
 #include <bits/stdc++.h>
 using namespace std;
-const int MOD = 1e9+7;
 typedef long long ll;
 #define dump(x)  cout << #x << " = " << (x) << endl
 #define YES(n) cout << ((n) ? "YES" : "NO"  ) << endl
@@ -20,9 +19,34 @@ typedef long long ll;
 template<class T> inline bool chmax(T& a, T b) { if (a < b) { a = b; return 1; } return 0; }
 template<class T> inline bool chmin(T& a, T b) { if (a > b) { a = b; return 1; } return 0; }
 
+int bubbleSort(int A[], int N) {
+    int sw = 0;
+    int flag = 1;
+    for(int i = 0; flag; ++i) {
+        flag = 0;
+        for(int j = N - 1; j >= i + 1; j--) {
+            if(A[j] < A[j - 1]) {
+                swap(A[j], A[j - 1]);
+                flag = 1;
+                sw++;
+            }
+        }
+    }
+    return sw;
+}
+
 int main(){
     cin.tie(0);
     ios::sync_with_stdio(false);
 
-
+    int n; cin >> n;
+    int A[100];
+    rep(i, n) cin >> A[i];
+    int ans = bubbleSort(A, n);
+    rep(i, n) {
+        if(i) cout << " ";
+        cout << A[i];
+    }
+    cout << endl;
+    cout << ans << endl;
 }

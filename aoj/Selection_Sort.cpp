@@ -1,6 +1,5 @@
 #include <bits/stdc++.h>
 using namespace std;
-const int MOD = 1e9+7;
 typedef long long ll;
 #define dump(x)  cout << #x << " = " << (x) << endl
 #define YES(n) cout << ((n) ? "YES" : "NO"  ) << endl
@@ -20,9 +19,32 @@ typedef long long ll;
 template<class T> inline bool chmax(T& a, T b) { if (a < b) { a = b; return 1; } return 0; }
 template<class T> inline bool chmin(T& a, T b) { if (a > b) { a = b; return 1; } return 0; }
 
+void selectionSort(int A[], int N) {
+    int cnt = 0;
+    rep(i, N) {
+        int minj = i;
+        for(int j = i; j < N; j++) {
+            if(A[j] < A[minj]) {
+                minj = j;
+            }
+        }
+        swap(A[i], A[minj]);
+        if(i != minj) cnt++;
+    }
+    rep(i, N) {
+        if(i) cout << " ";
+        cout << A[i];
+    }
+    cout << endl;
+    cout << cnt << endl;
+}
+
 int main(){
     cin.tie(0);
     ios::sync_with_stdio(false);
 
-
+    int n; cin >> n;
+    int A[100];
+    rep(i, n) cin >> A[i];
+    selectionSort(A, n);
 }

@@ -1,6 +1,5 @@
 #include <bits/stdc++.h>
 using namespace std;
-const int MOD = 1e9+7;
 typedef long long ll;
 #define dump(x)  cout << #x << " = " << (x) << endl
 #define YES(n) cout << ((n) ? "YES" : "NO"  ) << endl
@@ -24,5 +23,16 @@ int main(){
     cin.tie(0);
     ios::sync_with_stdio(false);
 
+    int n; cin >> n;
+    vector<int> R(n);
+    rep(i, n) cin >> R[i];
 
+    int maxv = -1e9;
+    int minv = R[0];
+
+    for(int i = 1; i < n; i++) {
+        maxv = max(maxv, R[i] - minv);
+        minv = min(minv, R[i]);
+    }
+    COUT(maxv);
 }
