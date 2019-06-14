@@ -1,11 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
-const int MOD = 1e9+7;
 typedef long long ll;
-const double EPS = 1e-9;
-const int INF = 1e9;
-const int MOD = 1e9+7;
-const ll LINF = 1e18;
 #define dump(x)  cout << #x << " = " << (x) << endl
 #define YES(n) cout << ((n) ? "YES" : "NO"  ) << endl
 #define Yes(n) cout << ((n) ? "Yes" : "No"  ) << endl
@@ -24,9 +19,43 @@ const ll LINF = 1e18;
 template<class T> inline bool chmax(T& a, T b) { if (a < b) { a = b; return 1; } return 0; }
 template<class T> inline bool chmin(T& a, T b) { if (a > b) { a = b; return 1; } return 0; }
 
+struct Point { double x, y;};
+
+void koch(int n, Point a, Point b){
+    if(n == 0) return;
+    Point s, t, u;
+    double th = M_PI * 60.0 / 180.0;
+
+    s.x = (2.0 * a.x + 1.0 * b.x) / 3.0;
+    s.y = (2.0 * a.y + 1.0 * b.y) / 3.0;
+    t.x = (1.0 * a.x + 2.0 * b.x) / 3.0;
+    t.y = (1.0 * a.y + 2.0 * b.y) / 3.0;
+    u.x = (t.x - s.x) * cos(th) - (t.y - s.y) * sin(th) + s.x;
+    u.y = (t.x - s.x) * sin(th) + (t.y - s.y) * cos(th) + s.y;
+
+    koch(n - 1, a, s);
+    printf("%.8f %.8f\n", s.x, s.y);
+    koch(n - 1, s, u);
+    printf("%.8f %.8f\n", u.x, u.y);
+    koch(n - 1, u, t);
+    printf("%.8f %.8f\n", t.x, t.y);
+    koch(n - 1, t, b);
+}
+
 int main(){
     cin.tie(0);
     ios::sync_with_stdio(false);
 
+    int n; cin >> n;
+    Point a, b;
+    a.x = 0;
+    a.y = 0;
+    b.x = 100;
+    b.y = 0;
 
+    printf("%.8f %.8f\n", a.x, a.y);
+    koch(n, a, b);
+    printf("%.8f %.8f\n", b.x, b.y);
+
+    return 0;
 }

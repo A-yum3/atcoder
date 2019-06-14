@@ -1,11 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
-const int MOD = 1e9+7;
 typedef long long ll;
-const double EPS = 1e-9;
-const int INF = 1e9;
-const int MOD = 1e9+7;
-const ll LINF = 1e18;
 #define dump(x)  cout << #x << " = " << (x) << endl
 #define YES(n) cout << ((n) ? "YES" : "NO"  ) << endl
 #define Yes(n) cout << ((n) ? "Yes" : "No"  ) << endl
@@ -24,9 +19,42 @@ const ll LINF = 1e18;
 template<class T> inline bool chmax(T& a, T b) { if (a < b) { a = b; return 1; } return 0; }
 template<class T> inline bool chmin(T& a, T b) { if (a > b) { a = b; return 1; } return 0; }
 
+int n, k;
+ll T[100000];
+
+int check(ll P) {
+    int i = 0;
+    rep(j, k) {
+        ll s = 0;
+        while(s + T[i] <= P) {
+            s += T[i];
+            i++;
+            if(i == n) return n;
+        }
+    }
+    return i;
+}
+
+int solve() {
+    ll left = 0;
+    ll right = 100000 * 10000;
+    ll mid;
+    while(right - left > 1) {
+        mid = (left + right) / 2;
+        int v = check(mid);
+        if(v >= n) right = mid;
+        else left = mid;
+    }
+
+    return right;
+}
+
 int main(){
     cin.tie(0);
     ios::sync_with_stdio(false);
 
-
+    cin >> n >> k;
+    rep(i, n) cin >> T[i];
+    ll ans= solve();
+    cout << ans << endl;
 }

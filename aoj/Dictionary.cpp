@@ -1,11 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
-const int MOD = 1e9+7;
 typedef long long ll;
-const double EPS = 1e-9;
-const int INF = 1e9;
-const int MOD = 1e9+7;
-const ll LINF = 1e18;
 #define dump(x)  cout << #x << " = " << (x) << endl
 #define YES(n) cout << ((n) ? "YES" : "NO"  ) << endl
 #define Yes(n) cout << ((n) ? "Yes" : "No"  ) << endl
@@ -28,5 +23,15 @@ int main(){
     cin.tie(0);
     ios::sync_with_stdio(false);
 
+    int n; cin >> n;
 
+    map<string, int> mp;
+    rep(i, n) {
+        string s, t; cin >> s >> t;
+        if(s == "insert") mp[t]++;
+        else {
+            if(mp[t] >= 1) cout << "yes" << endl;
+            else cout << "no" << endl;
+        }
+    }
 }
