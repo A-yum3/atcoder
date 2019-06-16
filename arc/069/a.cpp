@@ -1,3 +1,15 @@
+/*
+　　こんにちは。あたしはｶｳｶﾞｰﾙ。
+　　redcoderになるためAtCoderを巡る旅をしてます。
+
+　　　 　 ＿_
+　　　 ヽ|＿_|ノ　　　　ﾓｫ
+　　　　||‘‐‘||ﾚ　　_)_, ―‐ 、
+　　　　/(Ｙ (ヽ＿ /・ ヽ　　 ￣ヽ
+　　　　∠ ＿ ゝ　 ｀^ヽ ﾉ.::::_(ノヽ
+　　　　 _/ヽ　 　　  /ヽ￣￣/ヽ
+*/
+
 #include <bits/stdc++.h>
 using namespace std;
 typedef long long ll;
@@ -23,7 +35,12 @@ int main(){
     cin.tie(0);
     ios::sync_with_stdio(false);
 
-    int n, m; cin >> n >> m;
-    rep(i, m) {
+    ll n, m; cin >> n >> m;
+    ll ans = 0;
+    if(n > m) {
+        ans = m / 2;
+    } else {
+        ans = min(m / 2, n + (m - (n * 2)) / 4);
     }
+    cout << ans << endl;
 }

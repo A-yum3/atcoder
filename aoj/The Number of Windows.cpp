@@ -1,3 +1,15 @@
+/*
+　　こんにちは。あたしはｶｳｶﾞｰﾙ。
+　　redcoderになるためAtCoderを巡る旅をしてます。
+
+　　　 　 ＿_
+　　　 ヽ|＿_|ノ　　　　ﾓｫ
+　　　　||‘‐‘||ﾚ　　_)_, ―‐ 、
+　　　　/(Ｙ (ヽ＿ /・ ヽ　　 ￣ヽ
+　　　　∠ ＿ ゝ　 ｀^ヽ ﾉ.::::_(ノヽ
+　　　　 _/ヽ　 　　  /ヽ￣￣/ヽ
+*/
+
 #include <bits/stdc++.h>
 using namespace std;
 typedef long long ll;
@@ -19,11 +31,33 @@ typedef long long ll;
 template<class T> inline bool chmax(T& a, T b) { if (a < b) { a = b; return 1; } return 0; }
 template<class T> inline bool chmin(T& a, T b) { if (a > b) { a = b; return 1; } return 0; }
 
+
+// 尺取法
 int main(){
     cin.tie(0);
     ios::sync_with_stdio(false);
 
-    int n, m; cin >> n >> m;
-    rep(i, m) {
+    int n, q; cin >> n >> q;
+    vector<ll> a(n);
+    rep(i, n) cin >> a[i];
+
+    for(int j = 0; j < q; j++) {
+        ll x; cin >> x;
+        ll res = 0;
+
+        int right = 0;
+        ll sum = 0;
+        for(int left = 0; left < n; left++) {
+            while(right < n && sum + a[right] <= x) {
+                sum += a[right];
+                ++right;
+            }
+
+            res += (right - left);
+
+            if(right == left) ++right;
+            else sum -= a[left];
+        }
+        cout << res << endl;
     }
 }

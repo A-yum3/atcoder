@@ -1,3 +1,15 @@
+/*
+　　こんにちは。あたしはｶｳｶﾞｰﾙ。
+　　redcoderになるためAtCoderを巡る旅をしてます。
+
+　　　 　 ＿_
+　　　 ヽ|＿_|ノ　　　　ﾓｫ
+　　　　||‘‐‘||ﾚ　　_)_, ―‐ 、
+　　　　/(Ｙ (ヽ＿ /・ ヽ　　 ￣ヽ
+　　　　∠ ＿ ゝ　 ｀^ヽ ﾉ.::::_(ノヽ
+　　　　 _/ヽ　 　　  /ヽ￣￣/ヽ
+*/
+
 #include <bits/stdc++.h>
 using namespace std;
 typedef long long ll;
@@ -23,7 +35,24 @@ int main(){
     cin.tie(0);
     ios::sync_with_stdio(false);
 
-    int n, m; cin >> n >> m;
-    rep(i, m) {
+    ll n, k; cin >> n >> k;
+    vector<ll> a(n);
+    rep(i, n) cin >> a[i];
+
+    ll ans = 0;
+    int right = 0;
+    ll sum = 0;
+    for(int left = 0; left < n; left++) {
+        while(sum < k) {
+            if(right == n) break;
+            else {
+                sum += a[right];
+                right++;
+            }
+        }
+        if(sum < k) break;
+        ans += n - right + 1;
+        sum -= a[left];
     }
+    cout << ans << endl;
 }
