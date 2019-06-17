@@ -35,4 +35,19 @@ int main(){
     cin.tie(0);
     ios::sync_with_stdio(false);
 
+    int n; cin >> n;
+    vector<ll> a(n);
+    rep(i,n) cin >> a[i];
+
+    int right = 1;
+    ll res = 0;
+    for(int left = 0; left < n; left++) {
+        while(right < n && (right <= left || a[right - 1] < a[right])) {
+            right++;
+        }
+
+        res += right - left;
+        if(left == right) right++;
+    }
+    cout << res << endl;
 }

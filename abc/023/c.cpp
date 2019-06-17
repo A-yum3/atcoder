@@ -1,15 +1,3 @@
-/*
-　　こんにちは。あたしはｶｳｶﾞｰﾙ。
-　　redcoderになるためAtCoderを巡る旅をしてます。
-
-　　　 　 ＿_
-　　　 ヽ|＿_|ノ　　　　ﾓｫ
-　　　　||‘‐‘||ﾚ　　_)_, ―‐ 、
-　　　　/(Ｙ (ヽ＿ /・ ヽ　　 ￣ヽ
-　　　　∠ ＿ ゝ　 ｀^ヽ ﾉ.::::_(ノヽ
-　　　　 _/ヽ　 　　  /ヽ￣￣/ヽ
-*/
-
 #include <bits/stdc++.h>
 using namespace std;
 typedef long long ll;
@@ -31,8 +19,32 @@ typedef long long ll;
 template<class T> inline bool chmax(T& a, T b) { if (a < b) { a = b; return 1; } return 0; }
 template<class T> inline bool chmin(T& a, T b) { if (a > b) { a = b; return 1; } return 0; }
 
+int Gc[102000], Gr[100020];
+int row[102000], col[102000];
+int x[102000], y[102000];
+
 int main(){
     cin.tie(0);
     ios::sync_with_stdio(false);
 
+    int r, c, k, n; cin >> r >> c >> k >> n;
+    rep(i, n) {
+        cin >> y[i] >> x[i];
+        y[i]--; x[i]--;
+        Gr[y[i]]++;
+        Gc[x[i]]++;
+    }
+    rep(i, r) row[Gr[i]]++;
+    rep(i, c) col[Gc[i]]++;
+
+    ll ans = 0;
+    rep(i, k + 1) {
+        ans += row[i] * col[k - i];
+    }
+
+    rep(i, n) {
+        if(Gr[y[i]] + Gc[x[i]] == k + 1) ans++;
+        if(Gr[y[i]] + Gc[x[i]] == k) ans--;
+    }
+    cout << ans << endl;
 }

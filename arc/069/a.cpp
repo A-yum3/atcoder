@@ -35,4 +35,12 @@ int main(){
     cin.tie(0);
     ios::sync_with_stdio(false);
 
+    ll n, m; cin >> n >> m;
+    ll ans = 0;
+    if(n > m) {
+        ans = m / 2;
+    } else {
+        ans = min(m / 2, n + (m - (n * 2)) / 4);
+    }
+    cout << ans << endl;
 }

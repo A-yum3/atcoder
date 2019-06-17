@@ -35,4 +35,24 @@ int main(){
     cin.tie(0);
     ios::sync_with_stdio(false);
 
+    ll n, k; cin >> n >> k;
+    vector<ll> a(n);
+    rep(i, n) cin >> a[i];
+
+    ll ans = 0;
+    int right = 0;
+    ll sum = 0;
+    for(int left = 0; left < n; left++) {
+        while(sum < k) {
+            if(right == n) break;
+            else {
+                sum += a[right];
+                right++;
+            }
+        }
+        if(sum < k) break;
+        ans += n - right + 1;
+        sum -= a[left];
+    }
+    cout << ans << endl;
 }

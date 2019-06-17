@@ -35,4 +35,29 @@ int main(){
     cin.tie(0);
     ios::sync_with_stdio(false);
 
+    ll n, k; cin >> n >> k;
+    vector<ll> s(n);
+    rep(i, n) cin >> s[i];
+
+    rep(i, n) {
+        if(s[i] == 0){
+            cout << n << endl;
+            return 0;
+        }
+    }
+
+    int res = 0;
+    ll mult = 1;
+    int right = 0;
+    for(int left = 0; left < n; left++) {
+        while(right < n && mult * s[right] <= k) {
+            mult *= s[right];
+            right++;
+        }
+
+        res = max(res, right - left);
+        if(right == left) right++;
+        else mult /= s[left];
+    }
+    cout << res << endl;
 }

@@ -35,4 +35,6 @@ int main(){
     cin.tie(0);
     ios::sync_with_stdio(false);
 
+    ll w, h, x, y; cin >> w >> h >> x >> y;
+    printf("%lf %d\n", double(w)*double(h) / 2, x + x == w&& y + y == h);
 }

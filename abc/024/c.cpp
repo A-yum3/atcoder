@@ -1,15 +1,3 @@
-/*
-　　こんにちは。あたしはｶｳｶﾞｰﾙ。
-　　redcoderになるためAtCoderを巡る旅をしてます。
-
-　　　 　 ＿_
-　　　 ヽ|＿_|ノ　　　　ﾓｫ
-　　　　||‘‐‘||ﾚ　　_)_, ―‐ 、
-　　　　/(Ｙ (ヽ＿ /・ ヽ　　 ￣ヽ
-　　　　∠ ＿ ゝ　 ｀^ヽ ﾉ.::::_(ノヽ
-　　　　 _/ヽ　 　　  /ヽ￣￣/ヽ
-*/
-
 #include <bits/stdc++.h>
 using namespace std;
 typedef long long ll;
@@ -35,4 +23,23 @@ int main(){
     cin.tie(0);
     ios::sync_with_stdio(false);
 
+    int n, d, k; cin >> n >> d >> k;
+    vector<pair<int, int>> lr(d);
+    rep(i, d) cin >> lr[i].first >> lr[i].second;
+    rep(i, k) {
+        int start, goal; cin >> start >> goal;
+        int back = 0;
+        if(goal < start) back = 1;
+        rep(j, d) {
+            if(lr[j].first <= start && start <= lr[j].second){
+                if(back) start = lr[j].first;
+                else start = lr[j].second;
+
+                if(lr[j].first <= goal && goal <= lr[j].second){
+                    cout << j + 1 << endl;
+                    break;
+                }
+            }
+        }
+    }
 }

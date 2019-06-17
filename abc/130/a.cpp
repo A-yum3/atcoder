@@ -35,4 +35,7 @@ int main(){
     cin.tie(0);
     ios::sync_with_stdio(false);
 
+    int x, a; cin >> x >> a;
+    if(x < a) cout << 0 << endl;
+    else cout << 10 << endl;
 }

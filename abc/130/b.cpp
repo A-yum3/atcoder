@@ -35,4 +35,13 @@ int main(){
     cin.tie(0);
     ios::sync_with_stdio(false);
 
+    int n, x; cin >> n >> x;
+    int cnt = 1;
+    int dis = 0;
+    rep(i, n){
+        int l; cin >> l;
+        dis += l;
+        if(dis <= x) cnt++;
+    }
+    cout << cnt << endl;
 }

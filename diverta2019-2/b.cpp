@@ -13,6 +13,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 typedef long long ll;
+typedef pair<ll, ll> P;
 #define dump(x)  cout << #x << " = " << (x) << endl
 #define YES(n) cout << ((n) ? "YES" : "NO"  ) << endl
 #define Yes(n) cout << ((n) ? "Yes" : "No"  ) << endl
@@ -35,4 +36,25 @@ int main(){
     cin.tie(0);
     ios::sync_with_stdio(false);
 
+    int n; cin >> n;
+    vector<int> X(n);
+    vector<int> Y(n);
+    set<P> st;
+    rep(i, n) {
+        cin >> X[i] >> Y[i];
+    }
+    int ans = 0;
+    rep(i, n) {
+        rep(j, n) {
+            if(i == j) continue;
+            P p = P(X[i] - X[j], Y[i] - Y[j]);
+            int cnt = 0;
+            rep(k, n) {
+                P q = P(p.first + X[k], p.second + Y[k]);
+                if(st.count(q)) cnt++;
+            }
+            ans = max(ans, cnt);
+        }
+    }
+    cout << n - ans << endl;
 }
