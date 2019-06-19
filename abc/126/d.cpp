@@ -1,17 +1,18 @@
+/*
+　　こんにちは。あたしはｶｳｶﾞｰﾙ。
+　　redcoderになるためAtCoderを巡る旅をしてます。
+
+　　　 　 ＿_
+　　　 ヽ|＿_|ノ　　　　ﾓｫ
+　　　　||‘‐‘||ﾚ　　_)_, ―‐ 、
+　　　　/(Ｙ (ヽ＿ /・ ヽ　　 ￣ヽ
+　　　　∠ ＿ ゝ　 ｀^ヽ ﾉ.::::_(ノヽ
+　　　　 _/ヽ　 　　  /ヽ￣￣/ヽ
+*/
+
 #include <bits/stdc++.h>
 using namespace std;
 typedef long long ll;
-const double EPS = 1e-9;
-const int INF = 1e9;
-const int MOD = 1e9+7;
-const ll LINF = 1e18;
-typedef vector<int> vi;
-typedef vector<vector<int>> vvi;
-typedef pair<int, int> pi;
-typedef pair<ll, ll> pll;
-typedef map<int, int> mi;
-typedef set<int> si;
-#define VV(T) vector<vector< T > >
 #define dump(x)  cout << #x << " = " << (x) << endl
 #define YES(n) cout << ((n) ? "YES" : "NO"  ) << endl
 #define Yes(n) cout << ((n) ? "Yes" : "No"  ) << endl
@@ -25,21 +26,44 @@ typedef set<int> si;
 #define ALL(v) (v).begin() , (v).end()
 #define RALL(v) (v).rbegin(), (v).rend()
 
-#define pb push_back
-#define pu push
-#define mp make_pair
-#define fi first
-#define sc second
-
 #define COUT(x) cout << (x) << endl
-#define VECCIN(x) for(auto&youso_: (x) )cin>>youso_
-#define VECCOUT(x) for(auto&youso_: (x) )cout<<youso_<<" ";cout<<endl
 
 template<class T> inline bool chmax(T& a, T b) { if (a < b) { a = b; return 1; } return 0; }
 template<class T> inline bool chmin(T& a, T b) { if (a > b) { a = b; return 1; } return 0; }
+vector<int> color;
+struct Edge
+{
+    int to;
+    int weight;
+    Edge(int t, int w) : to(t), weight(w) { }
+};
 
+vector<vector<Edge>> G;
+
+void dfs(int v, int pre, int cur) {
+    color[v] = cur;
+    for(auto next_edge : G[v]) {
+        if(next_edge.to == pre) continue;
+        if(next_edge.weight & 1) dfs(next_edge.to, v, 1 - cur);
+        else dfs(next_edge.to, v, cur);
+    }
+}
 
 int main(){
     cin.tie(0);
     ios::sync_with_stdio(false);
+
+    int n; cin >> n;
+
+    G.assign(n, vector<Edge>());
+    for(int i = 0; i < n - 1; i++) {
+        int u, v, w; cin >> u >> v >> w;
+        u--; v--;
+        G[u].push_back(Edge(v, w));
+        G[v].push_back(Edge(u, w));
+    }
+
+    color.assign(n, 0); //色分け配列初期化
+    dfs(0, -1, 1);
+    for(auto v : color) cout << v << endl;
 }
