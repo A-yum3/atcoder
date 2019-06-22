@@ -30,21 +30,39 @@ typedef long long ll;
 
 template<class T> inline bool chmax(T& a, T b) { if (a < b) { a = b; return 1; } return 0; }
 template<class T> inline bool chmin(T& a, T b) { if (a > b) { a = b; return 1; } return 0; }
+using Graph = vector<vector<int>>;
+int ans;
 
-void dfs(string s, int cnt) {
-    if(cnt == 0) cout << s << endl;
-    else {
-        for(char c = 'a'; c <= 'c'; c++) {
-            dfs(s + c, cnt - 1);
+void dfs(const Graph &G, int count, int v, int first) {
+    if(count > 3) return;
+    for(auto next_v : G[v]) {
+        if(count == 3) {
+            if(next_v == first) {
+                ans++;
+                G[first].push_back(next_v);
+            }
         }
+        dfs(G, count + 1, next_v, first);
     }
+    return ;
 }
 
 int main(){
     cin.tie(0);
     ios::sync_with_stdio(false);
 
-    int n; cin >> n;
-    dfs("", n);
-    return 0;
+    int n, m; cin >> n >> m;
+    ans = 0;
+    Graph G(n);
+    rep(i, m) {
+        int a, b;
+        cin >> a >> b;
+        a--; b--;
+        G[a].push_back(b);
+        G[b].push_back(a);
+    }
+    rep(i, n) {
+        dfs(G, 0, i, i);
+    }
+    cout << ans << endl;
 }

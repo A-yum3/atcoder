@@ -31,20 +31,17 @@ typedef long long ll;
 template<class T> inline bool chmax(T& a, T b) { if (a < b) { a = b; return 1; } return 0; }
 template<class T> inline bool chmin(T& a, T b) { if (a > b) { a = b; return 1; } return 0; }
 
-void dfs(string s, int cnt) {
-    if(cnt == 0) cout << s << endl;
-    else {
-        for(char c = 'a'; c <= 'c'; c++) {
-            dfs(s + c, cnt - 1);
-        }
-    }
-}
-
 int main(){
     cin.tie(0);
     ios::sync_with_stdio(false);
 
-    int n; cin >> n;
-    dfs("", n);
-    return 0;
+    int a, b; cin >> a >> b;
+    if(a < 0 && b < 0){ // negative * negative
+        if(abs(a - b) & 1) cout << "Positive" << endl;
+        else cout << "Negative" << endl;
+    } else if(a <= 0 && 0 <= b) {
+        cout << "Zero" << endl;
+    } else {
+        cout << "Positive" << endl;
+    }
 }

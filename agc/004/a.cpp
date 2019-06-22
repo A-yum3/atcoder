@@ -1,10 +1,18 @@
+/*
+　　こんにちは。あたしはｶｳｶﾞｰﾙ。
+　　redcoderになるためAtCoderを巡る旅をしてます。
+
+　　　 　 ＿_
+　　　 ヽ|＿_|ノ　　　　ﾓｫ
+　　　　||‘‐‘||ﾚ　　_)_, ―‐ 、
+　　　　/(Ｙ (ヽ＿ /・ ヽ　　 ￣ヽ
+　　　　∠ ＿ ゝ　 ｀^ヽ ﾉ.::::_(ノヽ
+　　　　 _/ヽ　 　　  /ヽ￣￣/ヽ
+*/
+
 #include <bits/stdc++.h>
 using namespace std;
-const int MOD = 1e9+7;
 typedef long long ll;
-const double EPS = 1e-9;
-const int INF = 1e9;
-const ll LINF = 1e18;
 #define dump(x)  cout << #x << " = " << (x) << endl
 #define YES(n) cout << ((n) ? "YES" : "NO"  ) << endl
 #define Yes(n) cout << ((n) ? "Yes" : "No"  ) << endl
@@ -23,32 +31,18 @@ const ll LINF = 1e18;
 template<class T> inline bool chmax(T& a, T b) { if (a < b) { a = b; return 1; } return 0; }
 template<class T> inline bool chmin(T& a, T b) { if (a > b) { a = b; return 1; } return 0; }
 
+
 int main(){
     cin.tie(0);
     ios::sync_with_stdio(false);
 
-    int n; cin >> n;
-    int a; cin >> a;
-    rep(i, n) {
-        char op; cin >> op;
-        int b; cin >> b;
-        if(op == '+') {
-            a += b;
-            cout << i + 1 << ":" << a;
-        } else if(op == '*') {
-            a *= b;
-            cout << i + 1 << ":" << a;
-        } else if(op == '-') {
-            a -= b;
-            cout << i + 1<< ":" << a;
-        } else if(op == '/') {
-            if(b == 0) {
-                cout << "error" << endl;
-                return 0;
-            }
-            a /= b;
-            cout << i + 1<< ":" << a;
-        }
-        cout << endl;
-    }
+    vector<ll> a(3);
+    cin >> a[0] >> a[1] >> a[2];
+    sort(ALL(a));
+    int flg = 0;
+    ll ans = 0;
+    if(a[2] & 1) flg = 1;
+    if(flg) ans = a[1] * a[0];
+    else ans = 0;
+    cout << ans << endl;
 }

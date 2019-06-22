@@ -31,12 +31,12 @@ typedef long long ll;
 template<class T> inline bool chmax(T& a, T b) { if (a < b) { a = b; return 1; } return 0; }
 template<class T> inline bool chmin(T& a, T b) { if (a > b) { a = b; return 1; } return 0; }
 
-void dfs(string s, int cnt) {
-    if(cnt == 0) cout << s << endl;
-    else {
-        for(char c = 'a'; c <= 'c'; c++) {
-            dfs(s + c, cnt - 1);
-        }
+int n, k, now;
+
+void dfs(vector<vector<int>> &G, int v, int K, int root){
+    if(k == 2) now++;
+    for(auto next : G[v]){
+        dfs(G, next, K + 1, v);
     }
 }
 
@@ -44,7 +44,11 @@ int main(){
     cin.tie(0);
     ios::sync_with_stdio(false);
 
-    int n; cin >> n;
-    dfs("", n);
-    return 0;
+    cin >> n >> k;
+    vector<vector<int>> G(n);
+    rep(i, n - 1) {
+        G[i].push_back(i + 1);
+        G[i+1].push_back(i);
+    }
+    dfs(0, 0, -1);
 }
