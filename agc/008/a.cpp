@@ -35,15 +35,17 @@ int main(){
     cin.tie(0);
     ios::sync_with_stdio(false);
 
-    int n; cin >> n;
-    vector<ll> a(3 * n);
-    rep(i, 3 * n) {
-        cin >> a[i];
-    }
-    sort(ALL(a));
-    ll ans = 0;
-    for(int i = n; i < 3 * n; i += 2) {
-        ans += a[i];
+    ll x, y; cin >> x >> y;
+    ll ans = 1e18;
+    for(int i = 0; i < 4; i++) {
+        ll tmp = 1e18;
+        int cnt = 0;
+        ll nx = x;
+        ll ny = y;
+        if(i & 2) {nx *= -1; cnt++;}
+        if(i & 1) {ny *= -1; cnt++;}
+        if(nx <= ny) tmp = ny - nx;
+        ans = min(ans, tmp + cnt);
     }
     cout << ans << endl;
 }

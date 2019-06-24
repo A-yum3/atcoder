@@ -35,15 +35,19 @@ int main(){
     cin.tie(0);
     ios::sync_with_stdio(false);
 
-    int n; cin >> n;
-    vector<ll> a(3 * n);
-    rep(i, 3 * n) {
-        cin >> a[i];
+    ll n; cin >> n;
+    vector<ll> a(n);
+    vector<ll> b(n);
+    rep(i, n) {
+        cin >> a[i] >> b[i];
     }
-    sort(ALL(a));
     ll ans = 0;
-    for(int i = n; i < 3 * n; i += 2) {
-        ans += a[i];
+    for(int i = n - 1; i >= 0; i--) {
+        ll tmp = 0;
+        a[i] += ans;
+        tmp = b[i] - (a[i] % b[i]);
+        if(a[i] % b[i] == 0) continue;
+        ans += tmp;
     }
     cout << ans << endl;
 }

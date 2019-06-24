@@ -36,14 +36,15 @@ int main(){
     ios::sync_with_stdio(false);
 
     int n; cin >> n;
-    vector<ll> a(3 * n);
-    rep(i, 3 * n) {
-        cin >> a[i];
+    int odd = 0, even = 0;
+    rep(i, n){
+        int a; cin >> a;
+        if(a & 1) odd++;
+        else even++;
     }
-    sort(ALL(a));
-    ll ans = 0;
-    for(int i = n; i < 3 * n; i += 2) {
-        ans += a[i];
+    if(odd & 1) {
+        cout << "NO" << endl;
+        return 0;
     }
-    cout << ans << endl;
+    else cout << "YES" << endl;
 }
