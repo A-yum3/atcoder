@@ -65,7 +65,9 @@
     "tuple": "cpp",
     "typeindex": "cpp",
     "typeinfo": "cpp",
-    "utility": "cpp"
+    "utility": "cpp",
+    "xstring": "cpp",
+    "xutility": "cpp"
   },
   "C_Cpp.errorSquiggles": "Disabled",
   "cmake.configureOnOpen": true

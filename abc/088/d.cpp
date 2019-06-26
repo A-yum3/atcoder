@@ -1,73 +1,79 @@
+/*
+　　こんにちは。あたしはｶｳｶﾞｰﾙ。
+　　redcoderになるためAtCoderを巡る旅をしてます。
+
+　　　 　 ＿_
+　　　 ヽ|＿_|ノ　　　　ﾓｫ
+　　　　||‘‐‘||ﾚ　　_)_, ―‐ 、
+　　　　/(Ｙ (ヽ＿ /・ ヽ　　 ￣ヽ
+　　　　∠ ＿ ゝ　 ｀^ヽ ﾉ.::::_(ノヽ
+　　　　 _/ヽ　 　　  /ヽ￣￣/ヽ
+*/
+
 #include <bits/stdc++.h>
 using namespace std;
 typedef long long ll;
-const double EPS = 1e-9;
-const int INF = 1e9;
-const int MOD = 1e9+7;
-const ll LINF = 1e18;
-typedef vector<int> vint;
-typedef vector<vector<int>> vvint;
-typedef vector<vector<ll>> vll;
-typedef pair<int, int> pint;
-typedef pair<ll, ll> pll;
-typedef map<int, int> mi;
-typedef set<int> si;
-#define VV(T) vector<vector< T > >
+#define dump(x)  cout << #x << " = " << (x) << endl
+#define YES(n) cout << ((n) ? "YES" : "NO"  ) << endl
+#define Yes(n) cout << ((n) ? "Yes" : "No"  ) << endl
+#define POSSIBLE(n) cout << ((n) ? "POSSIBLE" : "IMPOSSIBLE"  ) << endl
+#define Possible(n) cout << ((n) ? "Possible" : "Impossible"  ) << endl
 
 #define rep(i, n) REP(i, 0, n)                              // 0, 1, ..., n-1
 #define REP(i, x, n) for(int i = x; i < n; i++)             // x, x + 1, ..., n-1
-#define invrep(i, n) for(int i = (n)-1; i >= 0; i--)        // n-1, n-2, ..., 0
-#define invREP(i, x, n) for(int i = (n)-1; i >= (x; i--)    // n-1, n-2, ..., x
 #define FOREACH(x,a) for(auto& (x) : (a) )
 
 #define ALL(v) (v).begin() , (v).end()
 #define RALL(v) (v).rbegin(), (v).rend()
 
-#define PB push_back
-
 #define COUT(x) cout << (x) << endl
-#define VECCIN(x) for(auto&youso_: (x) )cin>>youso_
-#define VECCOUT(x) for(auto&youso_: (x) )cout<<youso_<<" ";cout<<endl
 
-int H, W;
-char s[51][51];
+template<class T> inline bool chmax(T& a, T b) { if (a < b) { a = b; return 1; } return 0; }
+template<class T> inline bool chmin(T& a, T b) { if (a > b) { a = b; return 1; } return 0; }
+typedef pair<int, int> P;
+
+int h, w;
+char board[51][51];
 int dist[51][51];
-int dx[4] = {-1, 0, 1, 0};
-int dy[4] = {0, -1, 0, 1};
-int sy = 0, sx = 0;
+int dy[4] = {-1, 0, 1, 0};
+int dx[4] = {0, -1, 0, 1};
+int sx = 0, sy = 0;
 
-int dfs(){
-    queue<pint> que;
-    rep(i, H) rep(j, W) dist[i][j] = -1;
-    int gy = H - 1, gx = W - 1;
-    que.push(pint(sy, sx));
-    dist[sy][sx] = 0;
+int bfs() {
+    queue<P> que;
+    rep(i, h) rep(j, w) dist[i][j] = -1;
+    int gy = h - 1, gx = w - 1;
+    que.push(P(sx, sy));
+    dist[sx][sy] = 0;
+    while(!que.empty()) {
+        P p = que.front(); que.pop();
+        if(p.first == gx && p.second == gy) break;
 
-    while(que.size()){
-        pint p = que.front(); que.pop();
-        if(p.first == gy && p.second == gx) break;
-
-        rep(i, 4){
-            int ny = p.first + dx[i], nx = p.second + dy[i];
-            if(0 <= ny && ny < H && 0 <= nx && nx < W && s[ny][nx] == '.' && dist[ny][nx] == -1){
+        rep(i, 4) {
+            int ny = p.first + dy[i];
+            int nx = p.second + dx[i];
+            if(0 <= ny && ny < h && 0 <= nx && nx < w && board[ny][nx] == '.' && dist[ny][nx] == -1) {
                 dist[ny][nx] = dist[p.first][p.second] + 1;
-                que.push(pint(ny, nx));
+                que.push(P(ny, nx));
             }
-        } 
+        }
     }
     return dist[gy][gx];
 }
 
 int main(){
-    cin >> H >> W;
-    int cnt = 0;
+    cin.tie(0);
+    ios::sync_with_stdio(false);
 
-    rep(i, H) rep(j, W){
-        cin >> s[i][j];
-        if(s[i][j] == '.') cnt++;
+    cin >> h >> w;
+    int cnt = 0;
+    rep(i, h) rep(j, w) {
+        cin >> board[i][j];
+        if(board[i][j] == '.') cnt++;
     }
 
-    int rel = dfs();
-    if(rel == -1) COUT(-1);
-    else COUT(cnt - rel - 1);
+    int rel = bfs();
+    if(rel == -1) cout << -1 << endl;
+    else cout << cnt - rel - 1 << endl;
+    return 0;
 }

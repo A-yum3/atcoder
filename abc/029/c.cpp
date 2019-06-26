@@ -1,17 +1,18 @@
+/*
+　　こんにちは。あたしはｶｳｶﾞｰﾙ。
+　　redcoderになるためAtCoderを巡る旅をしてます。
+
+　　　 　 ＿_
+　　　 ヽ|＿_|ノ　　　　ﾓｫ
+　　　　||‘‐‘||ﾚ　　_)_, ―‐ 、
+　　　　/(Ｙ (ヽ＿ /・ ヽ　　 ￣ヽ
+　　　　∠ ＿ ゝ　 ｀^ヽ ﾉ.::::_(ノヽ
+　　　　 _/ヽ　 　　  /ヽ￣￣/ヽ
+*/
+
 #include <bits/stdc++.h>
 using namespace std;
 typedef long long ll;
-const double EPS = 1e-9;
-const int INF = 1e9;
-const int MOD = 1e9+7;
-const ll LINF = 1e18;
-typedef vector<int> VI;
-typedef vector<vector<int>> VVI;
-typedef pair<int, int> PI;
-typedef pair<ll, ll> PL;
-typedef map<int, int> MI;
-typedef set<int> SI;
-#define VV(T) vector<vector< T > >
 #define dump(x)  cout << #x << " = " << (x) << endl
 #define YES(n) cout << ((n) ? "YES" : "NO"  ) << endl
 #define Yes(n) cout << ((n) ? "Yes" : "No"  ) << endl
@@ -24,19 +25,19 @@ typedef set<int> SI;
 
 #define ALL(v) (v).begin() , (v).end()
 #define RALL(v) (v).rbegin(), (v).rend()
+
 #define COUT(x) cout << (x) << endl
 
 template<class T> inline bool chmax(T& a, T b) { if (a < b) { a = b; return 1; } return 0; }
 template<class T> inline bool chmin(T& a, T b) { if (a > b) { a = b; return 1; } return 0; }
 
-void dfs(int res, string s) {
-    if(res == 0) cout << s << endl;
+void dfs(string s, int cnt) {
+    if(cnt == 0) cout << s << endl;
     else {
-        for(char c = 'a';  c <= 'c'; c++) {
-            dfs(res - 1, s + c);
+        for(char c = 'a'; c <= 'c'; c++) {
+            dfs(s + c, cnt - 1);
         }
     }
-
 }
 
 int main(){
@@ -44,5 +45,6 @@ int main(){
     ios::sync_with_stdio(false);
 
     int n; cin >> n;
-    dfs(n, "");
+    dfs("", n);
+    return 0;
 }

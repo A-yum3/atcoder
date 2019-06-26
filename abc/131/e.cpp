@@ -30,22 +30,13 @@ typedef long long ll;
 
 template<class T> inline bool chmax(T& a, T b) { if (a < b) { a = b; return 1; } return 0; }
 template<class T> inline bool chmin(T& a, T b) { if (a > b) { a = b; return 1; } return 0; }
-vector<int> color;
-struct Edge
-{
-    int to;
-    int weight;
-    Edge(int t, int w) : to(t), weight(w) { }
-};
 
-vector<vector<Edge>> G;
+int n, k, now;
 
-void dfs(int v, int pre, int cur) {
-    color[v] = cur;
-    for(auto next_edge : G[v]) {
-        if(next_edge.to == pre) continue;
-        if(next_edge.weight & 1) dfs(next_edge.to, v, 1 - cur);
-        else dfs(next_edge.to, v, cur);
+void dfs(vector<vector<int>> &G, int v, int K, int root){
+    if(k == 2) now++;
+    for(auto next : G[v]){
+        dfs(G, next, K + 1, v);
     }
 }
 
@@ -53,17 +44,11 @@ int main(){
     cin.tie(0);
     ios::sync_with_stdio(false);
 
-    int n; cin >> n;
-
-    G.assign(n, vector<Edge>());
-    for(int i = 0; i < n - 1; i++) {
-        int u, v, w; cin >> u >> v >> w;
-        u--; v--;
-        G[u].push_back(Edge(v, w));
-        G[v].push_back(Edge(u, w));
+    cin >> n >> k;
+    vector<vector<int>> G(n);
+    rep(i, n - 1) {
+        G[i].push_back(i + 1);
+        G[i+1].push_back(i);
     }
-
-    color.assign(n, 0); //色分け配列初期化
-    dfs(0, -1, 1);
-    for(auto v : color) cout << v << endl;
+    dfs(0, 0, -1);
 }

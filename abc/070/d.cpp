@@ -30,22 +30,17 @@ typedef long long ll;
 
 template<class T> inline bool chmax(T& a, T b) { if (a < b) { a = b; return 1; } return 0; }
 template<class T> inline bool chmin(T& a, T b) { if (a > b) { a = b; return 1; } return 0; }
-vector<int> color;
-struct Edge
-{
-    int to;
-    int weight;
-    Edge(int t, int w) : to(t), weight(w) { }
-};
+using Edge = pair<int, ll>;
+using Graph = vector<vector<Edge>>;
+int q, k, n;
+vector<ll> cost_k; // コスト表
 
-vector<vector<Edge>> G;
-
-void dfs(int v, int pre, int cur) {
-    color[v] = cur;
-    for(auto next_edge : G[v]) {
-        if(next_edge.to == pre) continue;
-        if(next_edge.weight & 1) dfs(next_edge.to, v, 1 - cur);
-        else dfs(next_edge.to, v, cur);
+// 頂点kを根として全てのノードへのコストをdfs
+void dfs(const Graph &G, int v, int parent, ll dist) {
+    cost_k[v] = dist;
+    for(auto next : G[v]) {
+        if(next.first == parent) continue;
+        dfs(G, next.first, v, dist + next.second);
     }
 }
 
@@ -53,17 +48,21 @@ int main(){
     cin.tie(0);
     ios::sync_with_stdio(false);
 
-    int n; cin >> n;
-
-    G.assign(n, vector<Edge>());
-    for(int i = 0; i < n - 1; i++) {
-        int u, v, w; cin >> u >> v >> w;
-        u--; v--;
-        G[u].push_back(Edge(v, w));
-        G[v].push_back(Edge(u, w));
+    cin >> n;
+    Graph G(n);
+    rep(i, n-1) {
+        int a, b, c; cin >> a >> b >> c;
+        a--; b--;
+        G[a].push_back(make_pair(b, c));
+        G[b].push_back(make_pair(a, c));
     }
-
-    color.assign(n, 0); //色分け配列初期化
-    dfs(0, -1, 1);
-    for(auto v : color) cout << v << endl;
+    cin >> q >> k;
+    cost_k.resize(n);
+    k--;
+    dfs(G, k, -1, 0);
+    rep(i, q) {
+        int x, y; cin >> x >> y;
+        x--; y--;
+        cout << cost_k[x] + cost_k[y] << endl;
+    }
 }
