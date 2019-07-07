@@ -35,18 +35,17 @@ int main(){
     cin.tie(0);
     ios::sync_with_stdio(false);
 
-    ll n, x; cin >> n >> x;
-    vector<ll> a(n);
-    rep(i, n) cin >> a[i];
-    sort(ALL(a));
-    int ans = 0;
-    int i = 0;
-    while(x - a[i] >= 0) {
-        x -= a[i];
-        ans++;
-        i++;
-        if(i == n) break;
+    vector<int> a(26, 0);
+    string s; cin >> s;
+    rep(i, 4) {
+        a[s[i] -'A']++;
     }
-    if(x > 0 && i == n) ans--;
-    cout << ans << endl;
+    int cnt = 0;
+    int flg = 0;
+    rep(i, 26) {
+        if(a[i] == 0) continue;
+        if(a[i] == 1 || a[i] > 2) flg = 1;
+    }
+    if(flg) cout << "No" << endl;
+    else cout << "Yes" << endl;
 }

@@ -31,22 +31,31 @@ typedef long long ll;
 template<class T> inline bool chmax(T& a, T b) { if (a < b) { a = b; return 1; } return 0; }
 template<class T> inline bool chmin(T& a, T b) { if (a > b) { a = b; return 1; } return 0; }
 
+// ユークリッドの互除法
+ll gcd(ll a, ll b) {
+    if (b == 0) return a;
+    return gcd(b, a % b);
+}
+
+// 最小公倍数(lcm)
+ll lcm(ll a, ll b) {
+    ll g = gcd(a, b);
+    return a / g * b;
+}
+
 int main(){
     cin.tie(0);
     ios::sync_with_stdio(false);
 
-    ll n, x; cin >> n >> x;
-    vector<ll> a(n);
-    rep(i, n) cin >> a[i];
-    sort(ALL(a));
-    int ans = 0;
-    int i = 0;
-    while(x - a[i] >= 0) {
-        x -= a[i];
-        ans++;
-        i++;
-        if(i == n) break;
+    ll n, m; cin >> n >> m;
+    string s, t; cin >> s >> t;
+    ll L = lcm(n, m);
+    ll l = lcm(L/n, L/m);
+    for(ll i = 0; i < L; i+=l) {
+        if(s[i / (L/n)] != t[i / (L/m)]){
+            cout << -1 << endl;
+            return 0;w`
+        }
     }
-    if(x > 0 && i == n) ans--;
-    cout << ans << endl;
+    cout << L << endl;
 }

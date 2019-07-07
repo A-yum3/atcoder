@@ -35,18 +35,11 @@ int main(){
     cin.tie(0);
     ios::sync_with_stdio(false);
 
-    ll n, x; cin >> n >> x;
-    vector<ll> a(n);
-    rep(i, n) cin >> a[i];
-    sort(ALL(a));
-    int ans = 0;
-    int i = 0;
-    while(x - a[i] >= 0) {
-        x -= a[i];
-        ans++;
-        i++;
-        if(i == n) break;
-    }
-    if(x > 0 && i == n) ans--;
+    ll n; cin >> n;
+    vector<ll> d(n);
+    rep(i, n) cin >> d[i];
+    sort(ALL(d));
+    ll ans = 0;
+    ans = d[n / 2] - d[n / 2 - 1];
     cout << ans << endl;
 }

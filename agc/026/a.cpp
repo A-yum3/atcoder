@@ -1,27 +1,49 @@
+/*
+　　こんにちは。あたしはｶｳｶﾞｰﾙ。
+　　redcoderになるためAtCoderを巡る旅をしてます。
+
+　　　 　 ＿_
+　　　 ヽ|＿_|ノ　　　　ﾓｫ
+　　　　||‘‐‘||ﾚ　　_)_, ―‐ 、
+　　　　/(Ｙ (ヽ＿ /・ ヽ　　 ￣ヽ
+　　　　∠ ＿ ゝ　 ｀^ヽ ﾉ.::::_(ノヽ
+　　　　 _/ヽ　 　　  /ヽ￣￣/ヽ
+*/
+
 #include <bits/stdc++.h>
 using namespace std;
 typedef long long ll;
-const double EPS = 1e-9;
-typedef vector<int> vint;
-typedef vector<vector<int>> vvint;
-typedef vector<vector<ll>> vll;
-typedef pair<int, int> pint;
-typedef pair<ll, ll> pll;
-#define VV(T) vector<vector< T > >
-#define brep(i, n) BREP(i, 0, m);
-#define BREP(i, x, n) for(int i = x; i < (1<<n); i++)
-#define rep(i, n) REP(i, 0, n)
+#define dump(x)  cout << #x << " = " << (x) << endl
+#define YES(n) cout << ((n) ? "YES" : "NO"  ) << endl
+#define Yes(n) cout << ((n) ? "Yes" : "No"  ) << endl
+#define POSSIBLE(n) cout << ((n) ? "POSSIBLE" : "IMPOSSIBLE"  ) << endl
+#define Possible(n) cout << ((n) ? "Possible" : "Impossible"  ) << endl
+
+#define rep(i, n) REP(i, 0, n)                              // 0, 1, ..., n-1
+#define REP(i, x, n) for(int i = x; i < n; i++)             // x, x + 1, ..., n-1
+#define FOREACH(x,a) for(auto& (x) : (a) )
+
 #define ALL(v) (v).begin() , (v).end()
 #define RALL(v) (v).rbegin(), (v).rend()
-#define REP(i, x, n) for(int i = x; i < n; i++)
-#define PB push_back
-#define MOD 1000000009LL
 
-int a[105];
+#define COUT(x) cout << (x) << endl
+
+template<class T> inline bool chmax(T& a, T b) { if (a < b) { a = b; return 1; } return 0; }
+template<class T> inline bool chmin(T& a, T b) { if (a > b) { a = b; return 1; } return 0; }
 
 int main(){
-    int N, s; cin >> N;
-    rep(i, N) cin >> a[i];
-    REP(i, 1, N) if(a[i] == a[i - 1]) s++, i++;
-    cout << s << endl;
+    cin.tie(0);
+    ios::sync_with_stdio(false);
+
+    int n; cin >> n;
+    vector<int> a(n);
+    int ans = 0;
+    rep(i, n) cin >> a[i];
+    for(int i = 1; i < n; i++) {
+        if(a[i] == a[i - 1]){
+            ans++;
+            i++;
+        }
+    }
+    cout << ans << endl;
 }

@@ -31,22 +31,39 @@ typedef long long ll;
 template<class T> inline bool chmax(T& a, T b) { if (a < b) { a = b; return 1; } return 0; }
 template<class T> inline bool chmin(T& a, T b) { if (a > b) { a = b; return 1; } return 0; }
 
+const int MOD = 1000000007;
+
+int exp_mod(long long a, long long b, int m) {
+	long long res = 1;
+	while (b > 0) {
+		if (b&1)
+			res = (res * a)%m;
+		a = (a * a)%m;
+		b >>= 1;
+	}
+	return (int)res;
+}
+
+int fact_mod(int n, int m) {
+	long long res = 1;
+	for (int i=n; i>0; --i)
+		res = (res * i)%m;
+	return (int)res;
+}
+
+int comb_mod(int n, int r) {
+	long long res = 1;
+	for (int i=0; i<r; ++i)
+		res = (res * (n - i) )%MOD;
+	return ( res * exp_mod(fact_mod(r, MOD), MOD-2, MOD) ) % MOD;
+}
+
 int main(){
     cin.tie(0);
     ios::sync_with_stdio(false);
 
-    ll n, x; cin >> n >> x;
-    vector<ll> a(n);
-    rep(i, n) cin >> a[i];
-    sort(ALL(a));
-    int ans = 0;
-    int i = 0;
-    while(x - a[i] >= 0) {
-        x -= a[i];
-        ans++;
-        i++;
-        if(i == n) break;
+    int n, k; cin >> n >> k;
+    for(int i = 1; i <= k; i++) {
+        cout << comb_mod(n-k+1, i)*comb_mod(k-1,i-1) << endl;
     }
-    if(x > 0 && i == n) ans--;
-    cout << ans << endl;
 }

@@ -35,18 +35,14 @@ int main(){
     cin.tie(0);
     ios::sync_with_stdio(false);
 
-    ll n, x; cin >> n >> x;
-    vector<ll> a(n);
-    rep(i, n) cin >> a[i];
-    sort(ALL(a));
-    int ans = 0;
-    int i = 0;
-    while(x - a[i] >= 0) {
-        x -= a[i];
-        ans++;
-        i++;
-        if(i == n) break;
+    int n; cin >> n;
+    vector<int> p (n);
+    rep(i, n) cin >> p[i];
+    int cnt = 0;
+    for(int i = 1; i < n - 1; i++) {
+        if((p[i - 1] < p[i] && p[i] < p[i + 1]) || (p[i - 1] > p[i] && p[i] > p[i + 1])) {
+            cnt++;
+        }
     }
-    if(x > 0 && i == n) ans--;
-    cout << ans << endl;
+    cout << cnt << endl;
 }
