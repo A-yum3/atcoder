@@ -10,6 +10,9 @@
 　　　　 _/ヽ　 　　  /ヽ￣￣/ヽ
 */
 
+
+
+
 #include <bits/stdc++.h>
 using namespace std;
 typedef long long ll;
@@ -21,6 +24,7 @@ typedef long long ll;
 
 #define rep(i, n) REP(i, 0, n)                              // 0, 1, ..., n-1
 #define REP(i, x, n) for(int i = x; i < n; i++)             // x, x + 1, ..., n-1
+#define FOREACH(x,a) for(auto& (x) : (a) )
 
 #define ALL(v) (v).begin() , (v).end()
 #define RALL(v) (v).rbegin(), (v).rend()
@@ -30,39 +34,25 @@ typedef long long ll;
 template<class T> inline bool chmax(T& a, T b) { if (a < b) { a = b; return 1; } return 0; }
 template<class T> inline bool chmin(T& a, T b) { if (a > b) { a = b; return 1; } return 0; }
 
-string ban;
-
-bool judge(int start, int end) {
-    for(int i = start; i + 1 < end; i++){
-        if(ban[i] == '#' && ban[i + 1] == '#') return false;
-    }
-    return true;
-}
-
 int main(){
     cin.tie(0);
     ios::sync_with_stdio(false);
 
-    int n, a, b, c, d; cin >> n >> a >> b >> c >> d;
-    cin >> ban;
-    ban = '#' + ban + '#';
+    ll l, r; cin >> l >> r;
+    ll ans= 100000000;
 
-    if(!judge(a, c) || !judge(b, d)) {
-        cout << "No" << endl;
-        return 0;
-    }
-
-    if(c > d) {
-        int flg = 0;
-        for(int i = b; i <= d; i++) {
-            if(ban[i - 1] == '.' && ban[i] == '.' && ban[i + 1] == '.'){
-                flg = 1;
-            }
-        }
-        if(!flg) {
-            cout << "No" << endl;
-            return 0;
+    ll tl = l % 2019; // 2019を超えたら、modを取ると小さい問題に帰結
+    ll tr = r % 2019;
+    for(ll i = tl; i <= tr; i++) {
+        for(ll j = i + 1; j <= tr; j++) {
+            ans = min((i * j) % 2019, ans);
         }
     }
-    cout << "Yes" << endl;
+
+    if((l / 2019) < (r / 2019)){
+        ans = 0;
+    }
+
+    cout << ans << endl;
+    return 0;
 }

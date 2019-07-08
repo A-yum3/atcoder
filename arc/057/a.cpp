@@ -10,6 +10,9 @@
 　　　　 _/ヽ　 　　  /ヽ￣￣/ヽ
 */
 
+
+
+
 #include <bits/stdc++.h>
 using namespace std;
 typedef long long ll;
@@ -21,6 +24,7 @@ typedef long long ll;
 
 #define rep(i, n) REP(i, 0, n)                              // 0, 1, ..., n-1
 #define REP(i, x, n) for(int i = x; i < n; i++)             // x, x + 1, ..., n-1
+#define FOREACH(x,a) for(auto& (x) : (a) )
 
 #define ALL(v) (v).begin() , (v).end()
 #define RALL(v) (v).rbegin(), (v).rend()
@@ -30,39 +34,21 @@ typedef long long ll;
 template<class T> inline bool chmax(T& a, T b) { if (a < b) { a = b; return 1; } return 0; }
 template<class T> inline bool chmin(T& a, T b) { if (a > b) { a = b; return 1; } return 0; }
 
-string ban;
-
-bool judge(int start, int end) {
-    for(int i = start; i + 1 < end; i++){
-        if(ban[i] == '#' && ban[i + 1] == '#') return false;
-    }
-    return true;
-}
-
 int main(){
     cin.tie(0);
     ios::sync_with_stdio(false);
 
-    int n, a, b, c, d; cin >> n >> a >> b >> c >> d;
-    cin >> ban;
-    ban = '#' + ban + '#';
-
-    if(!judge(a, c) || !judge(b, d)) {
-        cout << "No" << endl;
+    ll a, k; cin >> a >> k;
+    ll cnt = 0;
+    auto t = a;
+    if(k == 0) {
+        cnt = 2*1000000000000 - a;
+        cout << cnt << endl;
         return 0;
     }
-
-    if(c > d) {
-        int flg = 0;
-        for(int i = b; i <= d; i++) {
-            if(ban[i - 1] == '.' && ban[i] == '.' && ban[i + 1] == '.'){
-                flg = 1;
-            }
-        }
-        if(!flg) {
-            cout << "No" << endl;
-            return 0;
-        }
+    while(t < 2*1000000000000) {
+        t += 1 + k * t;
+        cnt++;
     }
-    cout << "Yes" << endl;
+    cout << cnt << endl;
 }

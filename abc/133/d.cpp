@@ -10,6 +10,9 @@
 　　　　 _/ヽ　 　　  /ヽ￣￣/ヽ
 */
 
+
+
+
 #include <bits/stdc++.h>
 using namespace std;
 typedef long long ll;
@@ -21,6 +24,7 @@ typedef long long ll;
 
 #define rep(i, n) REP(i, 0, n)                              // 0, 1, ..., n-1
 #define REP(i, x, n) for(int i = x; i < n; i++)             // x, x + 1, ..., n-1
+#define FOREACH(x,a) for(auto& (x) : (a) )
 
 #define ALL(v) (v).begin() , (v).end()
 #define RALL(v) (v).rbegin(), (v).rend()
@@ -30,39 +34,24 @@ typedef long long ll;
 template<class T> inline bool chmax(T& a, T b) { if (a < b) { a = b; return 1; } return 0; }
 template<class T> inline bool chmin(T& a, T b) { if (a > b) { a = b; return 1; } return 0; }
 
-string ban;
-
-bool judge(int start, int end) {
-    for(int i = start; i + 1 < end; i++){
-        if(ban[i] == '#' && ban[i + 1] == '#') return false;
-    }
-    return true;
-}
-
 int main(){
     cin.tie(0);
     ios::sync_with_stdio(false);
 
-    int n, a, b, c, d; cin >> n >> a >> b >> c >> d;
-    cin >> ban;
-    ban = '#' + ban + '#';
+    int n; cin >> n;
+    vector<int> a(n);
+    rep(i, n) cin >> a[i];
+    ll temp = min(a[n - 1], a[0]) * 2;
+    a[n - 1] -= temp / 2;
+    a[0] -= temp / 2;
+    cout << temp;
 
-    if(!judge(a, c) || !judge(b, d)) {
-        cout << "No" << endl;
-        return 0;
+    for(int i = 1; i < n; i++) {
+        ll temp = min(a[i - 1], a[i]) * 2;
+        if(temp < 0) temp = 0;
+        a[i] -= temp / 2;
+        a[i - 1] -= temp / 2;
+        cout << " " << temp;
     }
-
-    if(c > d) {
-        int flg = 0;
-        for(int i = b; i <= d; i++) {
-            if(ban[i - 1] == '.' && ban[i] == '.' && ban[i + 1] == '.'){
-                flg = 1;
-            }
-        }
-        if(!flg) {
-            cout << "No" << endl;
-            return 0;
-        }
-    }
-    cout << "Yes" << endl;
+    cout << endl;
 }
