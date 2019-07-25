@@ -10,9 +10,6 @@
 　　　　 _/ヽ　 　　  /ヽ￣￣/ヽ
 */
 
-
-
-
 #include <bits/stdc++.h>
 using namespace std;
 typedef long long ll;
@@ -24,6 +21,7 @@ typedef long long ll;
 
 #define rep(i, n) REP(i, 0, n)                              // 0, 1, ..., n-1
 #define REP(i, x, n) for(int i = x; i < n; i++)             // x, x + 1, ..., n-1
+#define FOREACH(x,a) for(auto& (x) : (a) )
 
 #define ALL(v) (v).begin() , (v).end()
 #define RALL(v) (v).rbegin(), (v).rend()
@@ -33,8 +31,25 @@ typedef long long ll;
 template<class T> inline bool chmax(T& a, T b) { if (a < b) { a = b; return 1; } return 0; }
 template<class T> inline bool chmin(T& a, T b) { if (a > b) { a = b; return 1; } return 0; }
 
+int dy[4] = {0, -1, 0, 1};
+int dx[4] = {-1, 0, 1, 0};
+
 int main(){
     cin.tie(0);
     ios::sync_with_stdio(false);
 
+    vector<vector<int>> board(4, vector<int> (4, 0));
+    rep(i, 4) rep(j, 4) cin >> board[i][j];
+    rep(i, 4) rep(j, 4) {
+        rep(k, 4) {
+            int ny = i + dy[k], nx = j + dx[k];
+            if(ny < 0 || ny >= 4 || nx < 0 || nx >= 4) continue;
+            if(board[i][j] == board[ny][nx]) {
+                cout << "CONTINUE" << endl;
+                return 0;
+            }
+        }
+    }
+    cout << "GAMEOVER" << endl;
 }
+

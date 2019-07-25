@@ -35,24 +35,14 @@ int main(){
     cin.tie(0);
     ios::sync_with_stdio(false);
 
-    int n; cin >> n;
-    vector<ll> a(n);
-    rep(i, n) cin >> a[i];
-
-    int res = 0;
-    int right = 0;
-    set<int> se;
-    for(int left = 0; left < n; left++) {
-        while(right < n && !se.count(a[right])) {
-            se.insert(a[right]);
-            right++;
-        }
-
-        res = max(res, right - left);
-        if(left == right) ++right;
-        else {
-            se.erase(a[left]);
-        }
+    string s; cin >> s;
+    rep(i, s.size()) if(s[i] < 97) s[i] += 32;
+    int flg = 0;
+    rep(i, s.size()) {
+        if(s[i] == 'i' && flg == 0) flg |= 1;
+        if((s[i] == 'c' && flg == 1)) flg |= 2;
+        if((s[i] == 't' && flg == 3)) flg |= 4;
     }
-    cout << res << endl;
+    if(flg == 7) cout << "YES" << endl;
+    else cout << "NO" << endl;
 }

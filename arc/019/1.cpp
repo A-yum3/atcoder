@@ -10,9 +10,6 @@
 　　　　 _/ヽ　 　　  /ヽ￣￣/ヽ
 */
 
-
-
-
 #include <bits/stdc++.h>
 using namespace std;
 typedef long long ll;
@@ -24,6 +21,7 @@ typedef long long ll;
 
 #define rep(i, n) REP(i, 0, n)                              // 0, 1, ..., n-1
 #define REP(i, x, n) for(int i = x; i < n; i++)             // x, x + 1, ..., n-1
+#define FOREACH(x,a) for(auto& (x) : (a) )
 
 #define ALL(v) (v).begin() , (v).end()
 #define RALL(v) (v).rbegin(), (v).rend()
@@ -37,4 +35,15 @@ int main(){
     cin.tie(0);
     ios::sync_with_stdio(false);
 
+    string s; cin >> s;
+    rep(i, s.size()) {
+        if(s[i] == 'O') s[i] = '0';
+        if(s[i] == 'D') s[i] = '0';
+        if(s[i] == 'I') s[i] = '1';
+        if(s[i] == 'Z') s[i] = '2';
+        if(s[i] == 'S') s[i] = '5';
+        if(s[i] == 'B') s[i] = '8';
+        cout << s[i];
+    }
+    cout << endl;
 }
