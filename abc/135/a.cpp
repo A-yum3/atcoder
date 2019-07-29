@@ -10,9 +10,6 @@
 　　　　 _/ヽ　 　　  /ヽ￣￣/ヽ
 */
 
-
-
-
 #include <bits/stdc++.h>
 using namespace std;
 typedef long long ll;
@@ -38,9 +35,9 @@ int main(){
     cin.tie(0);
     ios::sync_with_stdio(false);
 
-    ll s; cin >> s;
-    const int v = 1000000000;
-    int x = (v - s % v) % v;
-    int y = (s + x) / v;
-    cout <<"0 0 1000000000 1 " << x << " " << y << endl;
+    ll a, b; cin >> a >> b;
+    if(a % 2 != b % 2) cout << "IMPOSSIBLE" << endl;
+    else {
+        cout << (a + b) / 2 << endl;
+    }
 }

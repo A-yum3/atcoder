@@ -10,9 +10,6 @@
 　　　　 _/ヽ　 　　  /ヽ￣￣/ヽ
 */
 
-
-
-
 #include <bits/stdc++.h>
 using namespace std;
 typedef long long ll;
@@ -38,9 +35,12 @@ int main(){
     cin.tie(0);
     ios::sync_with_stdio(false);
 
-    ll s; cin >> s;
-    const int v = 1000000000;
-    int x = (v - s % v) % v;
-    int y = (s + x) / v;
-    cout <<"0 0 1000000000 1 " << x << " " << y << endl;
+    int n; cin >> n;
+    int ans = 0;
+    rep(i, n) {
+        int a, b; cin >> a >> b;
+        ans += a * b;
+    }
+    ans *= 1.05;
+    cout << ans << endl;
 }

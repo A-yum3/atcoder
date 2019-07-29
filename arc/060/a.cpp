@@ -10,9 +10,6 @@
 　　　　 _/ヽ　 　　  /ヽ￣￣/ヽ
 */
 
-
-
-
 #include <bits/stdc++.h>
 using namespace std;
 typedef long long ll;
@@ -34,13 +31,23 @@ typedef long long ll;
 template<class T> inline bool chmax(T& a, T b) { if (a < b) { a = b; return 1; } return 0; }
 template<class T> inline bool chmin(T& a, T b) { if (a > b) { a = b; return 1; } return 0; }
 
+// 3次元DP・後でがんばろう
+
 int main(){
     cin.tie(0);
     ios::sync_with_stdio(false);
 
-    ll s; cin >> s;
-    const int v = 1000000000;
-    int x = (v - s % v) % v;
-    int y = (s + x) / v;
-    cout <<"0 0 1000000000 1 " << x << " " << y << endl;
+    int n, a; cin >> n >> a;
+    vector<int> x(n);
+    vector<int> cnt(51) = {0};
+    ll ans = 0;
+    rep(i, n) {
+        cin >> x[i];
+        cnt[x[i]]++;
+    }
+    ans += (n - 1) * cnt[a];
+    for(int i = 2; i <= n; i++) {
+
+    }
+
 }

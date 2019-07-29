@@ -10,9 +10,6 @@
 　　　　 _/ヽ　 　　  /ヽ￣￣/ヽ
 */
 
-
-
-
 #include <bits/stdc++.h>
 using namespace std;
 typedef long long ll;
@@ -38,9 +35,17 @@ int main(){
     cin.tie(0);
     ios::sync_with_stdio(false);
 
-    ll s; cin >> s;
-    const int v = 1000000000;
-    int x = (v - s % v) % v;
-    int y = (s + x) / v;
-    cout <<"0 0 1000000000 1 " << x << " " << y << endl;
+    int n; cin >> n;
+    string s; cin >> s;
+    int maxi = 0;
+    int mixi = 19191919199191;
+    for(int i = 1; i <= 4; i++) {
+        int cnt = 0;
+        rep(j, n) {
+            if(i == (s[j] - '0')) cnt++;
+        }
+        maxi= max(maxi, cnt);
+        mixi = min(mixi, cnt);
+    }
+    cout << maxi << " " << mixi << endl;
 }
