@@ -31,6 +31,8 @@ typedef long long ll;
 template<class T> inline bool chmax(T& a, T b) { if (a < b) { a = b; return 1; } return 0; }
 template<class T> inline bool chmin(T& a, T b) { if (a > b) { a = b; return 1; } return 0; }
 
+// 5, 18, 31, 44, 57...
+
 const int MOD = 1e9+7;
 
 int main(){
@@ -40,4 +42,5 @@ int main(){
     string s; cin >> s;
     int cnt = 0;
     rep(i, s.size()) if(s[i] == '?') cnt++;
+
 }
