@@ -1,5 +1,5 @@
 {
-  "python.pythonPath": "/usr/local/opt/python/bin/python3.7",
+  "python.pythonPath": "C:\\Users\\noika\\Anaconda3\\envs\\scrap\\python.exe",
   "files.associations": {
     "ostream": "cpp",
     "iostream": "cpp",
