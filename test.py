@@ -1,10 +1,11 @@
 s = input()
 ans = ""
 for c in s:
-    if c == 'O': print(0)
-    elif c == 'D': print(0)
-    elif c == 'I': print(1)
-    elif c == 'Z': print(2)
-    elif c == 'S': print(5)
-    elif c == 'B': print(8)
-    else: print(c)
+    if c == 'O': ans += "0"
+    elif c == 'D': ans += "0"
+    elif c == 'I': ans += "1"
+    elif c == 'Z': ans += "2"
+    elif c == 'S': ans += "5"
+    elif c == 'B': ans += "8"
+    else: ans += c
+print(ans)
