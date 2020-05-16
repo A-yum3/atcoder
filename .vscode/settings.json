@@ -68,7 +68,8 @@
     "utility": "cpp",
     "xstring": "cpp",
     "xutility": "cpp",
-    "random": "cpp"
+    "random": "cpp",
+    "regex": "cpp"
   },
   "C_Cpp.errorSquiggles": "Disabled",
   "cmake.configureOnOpen": true
