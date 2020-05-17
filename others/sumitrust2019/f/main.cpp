@@ -35,26 +35,5 @@ int main(){
     cin.tie(0);
     ios::sync_with_stdio(false);
 
-    int n; cin >> n;
-    vector<int> p(n), q(n);
-    rep(i, n) cin >> p[i];
-    rep(i, n) cin >> q[i];
-
-    vector<int> perm(n);
-    rep(i, n) perm[i] = i + 1;
-    int pNum, qNum, cnt = 0;
-    do {
-        cnt++;
-        bool pJudge = true;
-        bool qJudge = true;
-        rep(i, n) {
-            if(perm[i] != p[i]) pJudge = false;
-            if(perm[i] != q[i]) qJudge = false;
-        }
-        if(pJudge) pNum = cnt;
-        if(qJudge) qNum = cnt;
-    } while(next_permutation(perm.begin(), perm.end()));
-
-    COUT(abs(pNum - qNum));
 }
 

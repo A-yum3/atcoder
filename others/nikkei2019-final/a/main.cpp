@@ -34,27 +34,20 @@ template<class T> inline bool chmin(T& a, T b) { if (a > b) { a = b; return 1; }
 int main(){
     cin.tie(0);
     ios::sync_with_stdio(false);
+    int N; cin >> N;
+    vector<int> A(N);
+    rep(i, N) cin >> A[i];
 
-    int n; cin >> n;
-    vector<int> p(n), q(n);
-    rep(i, n) cin >> p[i];
-    rep(i, n) cin >> q[i];
+    vector<ll> v(N + 1, 0);
+    rep(i, N) v[i + 1] += v[i] + A[i];
 
-    vector<int> perm(n);
-    rep(i, n) perm[i] = i + 1;
-    int pNum, qNum, cnt = 0;
-    do {
-        cnt++;
-        bool pJudge = true;
-        bool qJudge = true;
-        rep(i, n) {
-            if(perm[i] != p[i]) pJudge = false;
-            if(perm[i] != q[i]) qJudge = false;
+    for(int i = 1; i <= N; i++) {
+        ll maxTotal = 0;
+        for(int j = 0; i + j <= N; j++) {
+            ll now = v[i + j] - v[j];
+            maxTotal = max(maxTotal, now);
         }
-        if(pJudge) pNum = cnt;
-        if(qJudge) qNum = cnt;
-    } while(next_permutation(perm.begin(), perm.end()));
-
-    COUT(abs(pNum - qNum));
+        cout << maxTotal << endl;
+    }
 }
 

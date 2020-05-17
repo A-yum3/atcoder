@@ -46,4 +46,25 @@ template <class T> inline bool chmin(T &a, T b) {
 int main() {
     cin.tie(0);
     ios::sync_with_stdio(false);
+
+    int n; cin >> n;
+    vector<pair<int ,int>> xy(n);
+    rep(i, n) cin >> xy[i].first >> xy[i].second;
+
+    int cnt = 0;
+    double ans, distSum = 0;
+    vector<int> order(n);
+    for(int i = 0; i < n; i++) order[i] = i;
+
+    do {
+        for(int i = 0; i < n - 1; i++) {
+            int distX = pow((xy[order[i]].first) - (xy[order[i + 1]].first), 2);
+            int distY = pow((xy[order[i]].second) - (xy[order[i + 1]].second), 2);
+            distSum += sqrt(distX + distY);
+        }
+        cnt++;
+    } while(next_permutation(order.begin(), order.end()));
+
+    ans = distSum / cnt;
+    printf("%.10f", ans);
 }
