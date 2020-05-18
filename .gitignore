@@ -10,3 +10,5 @@ CMakeLists.txt
 *.out
 /abc/*/*/test/
 /abc/*/contest.acc.json
+/others/*/*/test/
+/others/*/contest.acc.json
