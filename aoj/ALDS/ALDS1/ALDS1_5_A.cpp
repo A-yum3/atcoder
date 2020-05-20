@@ -47,52 +47,30 @@ int main() {
     cin.tie(0);
     ios::sync_with_stdio(false);
 
-    int m, n;
-    cin >> m;
-
-    vector<pair<int, int>> mxy(m), nxy, vec(m - 1);
-    set<pair<int, int>> nSet;
-
-    rep(i, m) cin >> mxy[i].first >> mxy[i].second;
-
+    int n;
     cin >> n;
-    nxy.resize(n);
+    vector<int> a(n);
+    rep(i, n) cin >> a[i];
 
-    rep(i, n) {
-        int x, y;
-        cin >> x >> y;
-        nxy[i].first  = x;
-        nxy[i].second = y;
-        nSet.insert({x, y});
-    }
+    int m;
+    cin >> m;
+    vector<int> b(m);
+    vector<bool> judge(m, false);
+    rep(i, m) cin >> b[i];
 
-    rep(i, m - 1) {
-        vec[i].first  = (mxy[i + 1].first - mxy[i].first);
-        vec[i].second = (mxy[i + 1].second - mxy[i].second);
-    }
-
-    REP(i, 1, m - 1) {
-        vec[i].first += vec[i - 1].first;
-        vec[i].second += vec[i - 1].second;
-    }
-
-    int ansX, ansY;
-    rep(i, n) {
-        bool flg = true;
-        for(const auto &a : vec) {
-            int x = nxy[i].first + a.first;
-            int y = nxy[i].second + a.second;
-            // cout << x << " " << y << endl;
-            if(nSet.find({x, y}) == nSet.end()) { // 対応する座標が無ければ終了
-                flg = false;
-                // cout << "break" << endl;
-                break;
-            }
+    for(int bit = 0; bit < (1 << n); bit++) {
+        int tSum = 0;
+        rep(i, n) {
+            if(bit & (1 << i)) { tSum += a[i]; }
         }
-        if(flg) {
-            ansX = nxy[i].first - mxy[0].first;
-            ansY = nxy[i].second - mxy[0].second;
+        rep(i, m) {
+            if(tSum == b[i]) { judge[i] = true; }
         }
     }
-    cout << ansX << " " << ansY << endl;
+    rep(i, m) {
+        if(judge[i])
+            cout << "yes" << endl;
+        else
+            cout << "no" << endl;
+    }
 }
