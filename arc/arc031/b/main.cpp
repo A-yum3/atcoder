@@ -43,21 +43,22 @@ template <class T> inline bool chmin(T &a, T b) {
     return 0;
 }
 
-int W, H;
-vector<vector<int>> field;
+// 後でバグを取る
 
-void dfs(int h, int w) {
-    field[h][w] = 0;
+vector<string> field(10);
+vector<vector<bool>> visited;
+const int dx[4] = {-1, 0, 1, 0};
+const int dy[4] = {0, -1, 0, 1};
 
-    for(int dh = -1; dh <= 1; ++dh) {
-        for(int dw = -1; dw <= 1; dw++) {
-            int nh = h + dh, nw = w + dw;
+void dfs(int y, int x) {
+    visited[y][x] = true;
 
-            if(nh < 0 || nh >= H || nw < 0 || nw >= W) continue;
-            if(field[nh][nw] == 0) continue;
-
-            dfs(nh, nw);
-        }
+    rep(i, 4) {
+        int ny = y + dy[i], nx = x + dx[i];
+        if(ny < 0 || ny >= 10 || nx < 0 || nx >= 10 || field[ny][nx] == 'x')
+            continue;
+        if(visited[ny][nx]) continue;
+        dfs(ny, nx);
     }
 }
 
@@ -65,19 +66,21 @@ int main() {
     cin.tie(0);
     ios::sync_with_stdio(false);
 
-    while(cin >> W >> H) {
-        if(H == 0 || W == 0) break;
-        field.assign(H, vector<int>(W, 0));
-        rep(h, H) rep(w, W) cin >> field[h][w];
+    rep(i, 10) cin >> field[i];
 
-        int count = 0;
-        rep(h, H) {
-            rep(w, W) {
-                if(field[h][w] == 0) continue;
-                dfs(h, w);
-                ++count;
-            }
+    int cnt = 0;
+    rep(i, 10) rep(j, 10) if(field[i][j] == 'o') cnt++;
+
+    int flg = 0;
+
+    rep(i, 10) rep(j, 10) {
+        if(field[i][j] == 'x') {
+            visited.assign(10, vector<bool>(10, false));
+            dfs(i, j);
+            int temp = 0;
+            rep(i, 10) rep(j, 10) if(visited[i][j]) temp++;
+            if(temp == cnt + 1) flg = 1;
         }
-        cout << count << endl;
     }
+    YES(flg);
 }

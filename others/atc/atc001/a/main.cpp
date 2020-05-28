@@ -43,21 +43,26 @@ template <class T> inline bool chmin(T &a, T b) {
     return 0;
 }
 
-int W, H;
-vector<vector<int>> field;
+int H, W;
+const int dx[4] = {1, 0, -1, 0};
+const int dy[4] = {0, 1, 0, -1};
+
+vector<string> field;
+vector<vector<bool>> seen(500, vector<bool>(500, false));
 
 void dfs(int h, int w) {
-    field[h][w] = 0;
+    seen[h][w] = true;
 
-    for(int dh = -1; dh <= 1; ++dh) {
-        for(int dw = -1; dw <= 1; dw++) {
-            int nh = h + dh, nw = w + dw;
+    rep(i, 4) {
+        int nh = h + dx[i];
+        int nw = w + dy[i];
 
-            if(nh < 0 || nh >= H || nw < 0 || nw >= W) continue;
-            if(field[nh][nw] == 0) continue;
+        if(nh < 0 || nh >= H || nw < 0 || nw >= W) continue;
+        if(field[nh][nw] == '#') continue;
 
-            dfs(nh, nw);
-        }
+        if(seen[nh][nw]) continue;
+
+        dfs(nh, nw);
     }
 }
 
@@ -65,19 +70,22 @@ int main() {
     cin.tie(0);
     ios::sync_with_stdio(false);
 
-    while(cin >> W >> H) {
-        if(H == 0 || W == 0) break;
-        field.assign(H, vector<int>(W, 0));
-        rep(h, H) rep(w, W) cin >> field[h][w];
+    cin >> H >> W;
+    field.resize(H);
+    rep(i, H) cin >> field[i];
 
-        int count = 0;
-        rep(h, H) {
-            rep(w, W) {
-                if(field[h][w] == 0) continue;
-                dfs(h, w);
-                ++count;
-            }
+    int sw, sh, gw, gh;
+    rep(i, H) {
+        rep(j, W) {
+            if(field[i][j] == 's') sh = i, sw = j;
+            if(field[i][j] == 'g') gh = i, gw = j;
         }
-        cout << count << endl;
     }
+
+    dfs(sh, sw);
+
+    if(seen[gh][gw])
+        cout << "Yes" << endl;
+    else
+        cout << "No" << endl;
 }

@@ -43,41 +43,38 @@ template <class T> inline bool chmin(T &a, T b) {
     return 0;
 }
 
-int W, H;
-vector<vector<int>> field;
+int n, m, ans = 0;
+vector<vector<int>> base, field;
+const int dx[4] = {-1, 0, 1, 0};
+const int dy[4] = {0, -1, 0, 1};
 
-void dfs(int h, int w) {
-    field[h][w] = 0;
+void dfs(int y, int x, int &cnt) {
+    field[y][x] = 0;
+    cnt++;
 
-    for(int dh = -1; dh <= 1; ++dh) {
-        for(int dw = -1; dw <= 1; dw++) {
-            int nh = h + dh, nw = w + dw;
-
-            if(nh < 0 || nh >= H || nw < 0 || nw >= W) continue;
-            if(field[nh][nw] == 0) continue;
-
-            dfs(nh, nw);
-        }
+    rep(i, 4) {
+        int ny = y + dy[i], nx = x + dx[i];
+        if(ny < 0 || ny >= n || nx < 0 || nx >= m || field[ny][nx] == 0)
+            continue;
+        dfs(ny, nx, cnt);
     }
+    ans         = max(ans, cnt);
+    field[y][x] = 1;
+    cnt--;
 }
 
 int main() {
     cin.tie(0);
     ios::sync_with_stdio(false);
 
-    while(cin >> W >> H) {
-        if(H == 0 || W == 0) break;
-        field.assign(H, vector<int>(W, 0));
-        rep(h, H) rep(w, W) cin >> field[h][w];
+    cin >> n >> m;
+    base.resize(n, vector<int>(m));
+    rep(i, n) rep(j, m) cin >> base[i][j];
 
-        int count = 0;
-        rep(h, H) {
-            rep(w, W) {
-                if(field[h][w] == 0) continue;
-                dfs(h, w);
-                ++count;
-            }
-        }
-        cout << count << endl;
+    rep(i, n) rep(j, m) {
+        field   = base;
+        int cnt = 0;
+        if(field[i][j]) { dfs(i, j, cnt); }
     }
+    COUT(ans);
 }

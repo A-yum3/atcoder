@@ -8,7 +8,11 @@ CMakeLists.txt
 */*.exe
 */*.out
 *.out
-/abc/*/*/test/
-/abc/*/contest.acc.json
+/abc[0-9]/*/*/test/
+/abc[0-9]/*/contest.acc.json
+/arc/*/*/test/
+/arc/*/*/contest.acc.json
 /others/*/*/test/
 /others/*/contest.acc.json
+/others/*/*/*/test/
+/others/*/*/*/contest.acc.json

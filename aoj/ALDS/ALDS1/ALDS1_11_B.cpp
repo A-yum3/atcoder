@@ -43,41 +43,49 @@ template <class T> inline bool chmin(T &a, T b) {
     return 0;
 }
 
-int W, H;
-vector<vector<int>> field;
+using Graph = vector<vector<int>>;
+vector<bool> seen;
+vector<int> first_order;
+vector<int> second_order;
 
-void dfs(int h, int w) {
-    field[h][w] = 0;
+void dfs(const Graph &G, int v, int &ptr) {
+    first_order[v] = ptr++;
+    seen[v]        = true;
 
-    for(int dh = -1; dh <= 1; ++dh) {
-        for(int dw = -1; dw <= 1; dw++) {
-            int nh = h + dh, nw = w + dw;
-
-            if(nh < 0 || nh >= H || nw < 0 || nw >= W) continue;
-            if(field[nh][nw] == 0) continue;
-
-            dfs(nh, nw);
-        }
+    for(const auto &next_v : G[v]) {
+        if(seen[next_v]) continue;
+        dfs(G, next_v, ptr);
     }
+
+    second_order[v] = ptr++;
 }
 
 int main() {
     cin.tie(0);
     ios::sync_with_stdio(false);
 
-    while(cin >> W >> H) {
-        if(H == 0 || W == 0) break;
-        field.assign(H, vector<int>(W, 0));
-        rep(h, H) rep(w, W) cin >> field[h][w];
-
-        int count = 0;
-        rep(h, H) {
-            rep(w, W) {
-                if(field[h][w] == 0) continue;
-                dfs(h, w);
-                ++count;
-            }
+    int n;
+    cin >> n;
+    Graph G(n + 1); // 1-indexed
+    rep(i, n) {
+        int v, k;
+        cin >> v >> k;
+        rep(i, k) {
+            int to_v;
+            cin >> to_v;
+            G[v].push_back(to_v);
         }
-        cout << count << endl;
+    }
+    // 頂点1スタート
+    seen.assign(n + 1, false);
+    first_order.resize(n + 1);
+    second_order.resize(n + 1);
+    int ptr = 1;
+    REP(i, 1, n + 1) {
+        if(!seen[i]) dfs(G, i, ptr);
+    }
+
+    REP(i, 1, n + 1) {
+        cout << i << " " << first_order[i] << " " << second_order[i] << endl;
     }
 }

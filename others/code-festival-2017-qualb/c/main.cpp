@@ -43,41 +43,48 @@ template <class T> inline bool chmin(T &a, T b) {
     return 0;
 }
 
-int W, H;
-vector<vector<int>> field;
+using Graph = vector<vector<int>>;
 
-void dfs(int h, int w) {
-    field[h][w] = 0;
+vector<int> color;
 
-    for(int dh = -1; dh <= 1; ++dh) {
-        for(int dw = -1; dw <= 1; dw++) {
-            int nh = h + dh, nw = w + dw;
-
-            if(nh < 0 || nh >= H || nw < 0 || nw >= W) continue;
-            if(field[nh][nw] == 0) continue;
-
-            dfs(nh, nw);
-        }
+bool dfs(Graph &G, int v, int c) {
+    color[v] = c;
+    for(auto next_to : G[v]) {
+        if(color[next_to] == c) return false;
+        if(color[next_to] == 0 && !dfs(G, next_to, -c)) return false;
     }
+    return true;
 }
 
 int main() {
     cin.tie(0);
     ios::sync_with_stdio(false);
 
-    while(cin >> W >> H) {
-        if(H == 0 || W == 0) break;
-        field.assign(H, vector<int>(W, 0));
-        rep(h, H) rep(w, W) cin >> field[h][w];
+    ll N, M;
+    cin >> N >> M;
+    Graph G(N);
+    rep(i, M) {
+        int a, b;
+        cin >> a >> b;
+        a--;
+        b--;
+        G[a].push_back(b);
+        G[b].push_back(a);
+    }
 
-        int count = 0;
-        rep(h, H) {
-            rep(w, W) {
-                if(field[h][w] == 0) continue;
-                dfs(h, w);
-                ++count;
+    ll B = 0, W = 0;
+    color.assign(N, 0);
+
+    if(dfs(G, 0, 1)) {
+        rep(i, N) {
+            if(color[i] == 1) {
+                B++;
+            } else if(color[i] == -1) {
+                W++;
             }
         }
-        cout << count << endl;
+        cout << B * W - M << endl;
+    } else {
+        cout << ((N * (N - 1)) / 2) - M << endl;
     }
 }

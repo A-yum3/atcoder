@@ -43,21 +43,25 @@ template <class T> inline bool chmin(T &a, T b) {
     return 0;
 }
 
-int W, H;
-vector<vector<int>> field;
+struct Edge {
+    int to;
+    int weight;
+    Edge(int t, int w) : to(t), weight(w) {}
+};
 
-void dfs(int h, int w) {
-    field[h][w] = 0;
+using Graph = vector<vector<Edge>>;
 
-    for(int dh = -1; dh <= 1; ++dh) {
-        for(int dw = -1; dw <= 1; dw++) {
-            int nh = h + dh, nw = w + dw;
+vector<int> color;
 
-            if(nh < 0 || nh >= H || nw < 0 || nw >= W) continue;
-            if(field[nh][nw] == 0) continue;
+void dfs(Graph &G, int v, int cur, int pre) {
+    color[v] = cur;
 
-            dfs(nh, nw);
-        }
+    for(auto next_edge : G[v]) {
+        if(next_edge.to == pre) continue;
+        if(next_edge.weight % 2 == 0)
+            dfs(G, next_edge.to, cur, v);
+        else
+            dfs(G, next_edge.to, 1 - cur, v);
     }
 }
 
@@ -65,19 +69,20 @@ int main() {
     cin.tie(0);
     ios::sync_with_stdio(false);
 
-    while(cin >> W >> H) {
-        if(H == 0 || W == 0) break;
-        field.assign(H, vector<int>(W, 0));
-        rep(h, H) rep(w, W) cin >> field[h][w];
-
-        int count = 0;
-        rep(h, H) {
-            rep(w, W) {
-                if(field[h][w] == 0) continue;
-                dfs(h, w);
-                ++count;
-            }
-        }
-        cout << count << endl;
+    int N;
+    cin >> N;
+    Graph G(N);
+    rep(i, N - 1) {
+        int u, v, w;
+        cin >> u >> v >> w;
+        u--;
+        v--;
+        G[u].push_back(Edge(v, w));
+        G[v].push_back(Edge(u, w));
     }
+
+    color.assign(N, -1); // -1は未確定
+    dfs(G, 0, 1, -1);
+
+    rep(i, N) { COUT(color[i]); }
 }
