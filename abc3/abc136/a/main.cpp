@@ -35,5 +35,7 @@ int main(){
     cin.tie(0);
     ios::sync_with_stdio(false);
 
+    int a, b, c; cin >> a >> b >> c;
+    COUT(max(c - (a - b), 0));
 }
 

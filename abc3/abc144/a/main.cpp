@@ -35,5 +35,11 @@ int main(){
     cin.tie(0);
     ios::sync_with_stdio(false);
 
+    int A, B; cin >> A >> B;
+    if(A > 9 || B > 9) {
+        COUT(-1);
+    } else {
+        COUT(A * B);
+    }
 }
 

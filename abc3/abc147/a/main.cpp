@@ -35,5 +35,8 @@ int main(){
     cin.tie(0);
     ios::sync_with_stdio(false);
 
+    int a1,a2,a3; cin >> a1 >> a2 >> a3;
+    if(a1+a2+a3 >= 22) COUT("bust");
+    else COUT("win");
 }
 
